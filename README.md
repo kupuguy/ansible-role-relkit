@@ -20,7 +20,7 @@ No supported platform specified (yet.)
 | relkit_jenkins_http_bind_address | default 127.0.0.1 | None |
 | relkit_jenkins_http_bind_port | default 8080 | None |
 | relkit_jenkins_memory | default 512m | How much memory the JVM can use |
-| relkit_jenkins_sshkeys | default {} | List of dicts {'keyval', 'pubval', 'filename'} |
+| relkit_jenkins_sshkeys | default [] | List of dicts {'keyval', 'pubval', 'filename'} |
 | relkit_jenkins_stable | default True | Boolean. If set, use Long Term Support (LTS) release |
 | relkit_jenkins_state | default ignored | One of present, absent, ignored |
 
