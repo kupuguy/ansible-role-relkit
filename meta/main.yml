@@ -10,9 +10,13 @@ version: 0.1
 prefix: relkit_
 variables:
   relkit_environment: "Environment variables, such as http_proxy"
-  relkit_jenkins_stable: "Boolean, use Long Term Support (LTS) release or not"
+  relkit_jenkins_state: "One of present, absent, ignored"
+  relkit_jenkins_memory: "How much memory the JVM can use"
+  relkit_jenkins_stable: "Boolean. If set, use Long Term Support (LTS) release"
   relkit_jenkins_groups: "List of groupnames to which the jenkins user belongs"
   relkit_jenkins_sshkeys: "List of dicts {'keyval', 'pubval', 'filename'}"
+  relkit_jenkins_http_bind_port:
+  relkit_jenkins_http_bind_address:
 include_when:
   jenkins_present.yml: relkit_jenkins_state == "present"
   jenkins_absent.yml: relkit_jenkins_state == "absent"
