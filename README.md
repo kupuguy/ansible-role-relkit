@@ -15,10 +15,10 @@ No supported platform specified (yet.)
 
 | Name | Value | Description |
 |------|-------|-------------|
-| relkit_environment |   | Environment variables, such as http_proxy |
-| relkit_jenkins_groups |   | List of groupnames to which the jenkins user belongs |
-| relkit_jenkins_sshkeys |   | List of dicts {'keyval', 'pubval', 'filename'} |
-| relkit_jenkins_stable |   | Boolean, use Long Term Support (LTS) release or not |
+| relkit_environment | default {} | Environment variables, such as http_proxy |
+| relkit_jenkins_groups | default [] | List of groupnames to which the jenkins user belongs |
+| relkit_jenkins_sshkeys | default {} | List of dicts {'keyval', 'pubval', 'filename'} |
+| relkit_jenkins_stable | default True | Boolean, use Long Term Support (LTS) release or not |
 
 
 

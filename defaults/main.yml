@@ -1,0 +1,5 @@
+---
+relkit_environment: {}
+relkit_jenkins_stable: yes
+relkit_jenkins_groups: []
+relkit_jenkins_sshkeys: {}
