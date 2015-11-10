@@ -5,19 +5,20 @@
     name: openjdk-7-jre-headless
     state: present
 
-- name: Setting facts
+- name: Additional facts are computed
   set_fact:
-    relkit_jenkins_baseurl: "http://pkg.jenkins-ci.org/{{ 'debian-stable' if relkit_jenkins_stable else 'debian' }}"
+    jenkins_url: "http://pkg.jenkins-ci.org/{{ 'debian-stable' if relkit_jenkins_stable else 'debian' }}"
 
 - name: Jenkins-ci debian repository key is present
   apt_key:
     id: "D50582E6"
-    url: "{{ relkit_jenkins_baseurl }}/jenkins-ci.org.key"
+    url: "{{ jenkins_url }}/jenkins-ci.org.key"
     state: present
   environment: "{{ relkit_environment }}"
 
-- name: Jenkins debian repository is present apt_repository:
-    repo: "deb {{ relkit_jenkins_baseurl }} binary/"
+- name: Jenkins debian repository is present
+  apt_repository:
+    repo: "deb {{ jenkins_url }} binary/"
     state: present
     update_cache: yes
 
@@ -37,6 +38,7 @@
   template:
     src: jenkins-settings.j2
     dest: /etc/default/jenkins
+    owner: root
     mode: "644"
   notify:
   - relkit_restart_jenkins

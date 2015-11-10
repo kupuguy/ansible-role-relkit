@@ -1,0 +1,7 @@
+---
+- include: jenkins_absent.yml
+  name: jenkins_absent.yml is included
+  when: relkit_jenkins_state == "absent"
+- include: jenkins_present.yml
+  name: jenkins_present.yml is included
+  when: relkit_jenkins_state == "present"
