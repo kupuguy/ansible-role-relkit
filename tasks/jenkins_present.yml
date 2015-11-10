@@ -1,0 +1,73 @@
+---
+
+- name: JRE7 package is present
+  apt:
+    name: openjdk-7-jre-headless
+    state: present
+
+- name: Setting facts
+  set_fact:
+    relkit_jenkins_baseurl: "http://pkg.jenkins-ci.org/{{ 'debian-stable' if relkit_jenkins_stable else 'debian' }}"
+
+- name: Jenkins-ci debian repository key is present
+  apt_key:
+    id: "D50582E6"
+    url: "{{ relkit_jenkins_baseurl }}/jenkins-ci.org.key"
+    state: present
+  environment: "{{ relkit_environment }}"
+
+- name: Jenkins debian repository is present apt_repository:
+    repo: "deb {{ relkit_jenkins_baseurl }} binary/"
+    state: present
+    update_cache: yes
+
+- name: Jenkins package is present
+  apt:
+    name: jenkins
+    state: present
+
+- name: Jenkins user is in additional groups
+  user:
+    name: jenkins
+    groups: "{{ item }}"
+    append: yes
+  with_items: relkit_jenkins_groups
+
+- name: Jenkins is configured
+  template:
+    src: jenkins-settings.j2
+    dest: /etc/default/jenkins
+    mode: "644"
+  notify:
+  - relkit_restart_jenkins
+
+- name: Jenkins .ssh directory is present
+  file:
+    name: /var/lib/jenkins/.ssh
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: "700"
+
+- name: Jenkins private keys are present
+  copy:
+    content: "{{ item.keyval }}"
+    dest: "/var/lib/jenkins/.ssh/{{ item.filename }}"
+    owner: jenkins
+    group: jenkins
+    mode: "0600"
+  with_items: relkit_jenkins_sshkeys
+
+- name: Jenkins public keys are present
+  copy:
+    content: "{{ item.pubval }}"
+    dest: "/var/lib/jenkins/.ssh/{{ item.filename }}.pub"
+    owner: jenkins
+    mode: "644"
+  with_items: relkit_jenkins_sshkeys
+
+- name: Jenkins service is started
+  service:
+    name: jenkins
+    state: started
+    enabled: yes

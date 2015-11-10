@@ -1,0 +1,6 @@
+---
+
+- name: relkit_restart_jenkins
+  service:
+    name: jenkins
+    state: restarted

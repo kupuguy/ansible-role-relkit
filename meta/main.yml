@@ -1,0 +1,15 @@
+---
+dependencies: []
+galaxy_info:
+  author: code@fclaerhout.fr
+  description: All things release. All build and release tools and service in one role.
+  license: MIT
+  min_ansible_version: 1.8.4
+  platforms: []
+inconditions: {}
+variables:
+  relkit_environment: "Environment variables, such as http_proxy"
+  relkit_jenkins_stable: "Boolean, use Long Term Support (LTS) release or not"
+  relkit_jenkins_groups: "List of groupnames to which the jenkins user belongs"
+  relkit_jenkins_sshkeys: "List of dicts {'keyval', 'pubval', 'filename'}"
+version: 0.1

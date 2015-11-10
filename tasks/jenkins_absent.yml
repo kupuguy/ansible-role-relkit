@@ -1,0 +1,11 @@
+---
+
+- name: Jenkins service is stopped
+  service:
+    name: jenkins
+    state: stopped
+
+- name: Jenkins package is absent
+  apt:
+    name: jenkins
+    state: absent
