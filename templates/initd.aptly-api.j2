@@ -1,0 +1,54 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          aptly-api
+# Required-Start:    $local_fs $network $named $time $syslog
+# Required-Stop:     $local_fs $network $named $time $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       Debian Repository API Service
+### END INIT INFO
+
+PIDFILE="/var/run/aptly-api.pid"
+DAEMON="/usr/bin/aptly"
+ARGV="api serve -listen={{ aptly_api_listen_address }}:{{ aptly_api_listen_port }}"
+UID="aptly"
+
+status() {
+	if start-stop-daemon --status --pidfile $PIDFILE; then
+		echo "service is running" >&2
+	else
+		echo "service is not running" >&2
+	fi
+}
+
+start() {
+	start-stop-daemon\
+		--start\
+		--pidfile $PIDFILE\
+		--make-pidfile\
+		--chuid $UID\
+		--background\
+		--exec $DAEMON -- $ARGV
+}
+
+stop() {
+	start-stop-daemon --stop --pidfile $PIDFILE
+}
+
+case "$1" in
+	status)
+		status
+		;;
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		stop
+		start
+		;;
+	*)
+		echo "Usage: $0 {status|start|stop|restart}"
+esac

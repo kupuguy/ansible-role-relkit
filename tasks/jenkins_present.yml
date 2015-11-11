@@ -4,6 +4,8 @@
   apt:
     name: openjdk-7-jre-headless
     state: present
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Additional facts are computed
   set_fact:
@@ -26,6 +28,8 @@
   apt:
     name: jenkins
     state: present
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Jenkins user is in additional groups
   user:

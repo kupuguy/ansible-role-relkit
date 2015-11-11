@@ -1,7 +1,8 @@
 
 <!-- THIS IS A GENERATED FILE, DO NOT EDIT -->
 
-All things Build & Release.
+All things Build & Release. This role manages the provisioning of Build and Release tools and services: Jenkins (CI Service), Aptly (Debian Repository).
+
 
 * * *
 
@@ -15,6 +16,11 @@ No supported platform specified (yet.)
 
 | Name | Value | Description |
 |------|-------|-------------|
+| relkit_aptly_api_bind_address | default 0.0.0.0 | None |
+| relkit_aptly_api_bind_port | default 8081 | None |
+| relkit_aptly_dl_bind_address | default 0.0.0.0 | None |
+| relkit_aptly_dl_bind_port | default 8080 | None |
+| relkit_aptly_repositories | default [{'distribution': 'latest', 'name': 'default'}] | None |
 | relkit_environment | default {} | Environment variables, such as http_proxy |
 | relkit_jenkins_groups | default [] | List of groupnames to which the jenkins user belongs |
 | relkit_jenkins_http_bind_address | default 127.0.0.1 | None |

@@ -1,6 +1,24 @@
 ---
 
+###########
+# jenkins #
+###########
+
 - name: relkit_restart_jenkins
   service:
     name: jenkins
+    state: restarted
+
+#########
+# aptly #
+#########
+
+- name: relkit_restart_aptly_dl
+  service:
+    name: aptly-dl
+    state: restarted
+
+- name: relkit_restart_aptly_api
+  service:
+    name: aptly-api
     state: restarted

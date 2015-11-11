@@ -1,9 +1,27 @@
 ---
+
 relkit_environment: {}
+
+###########
+# jenkins #
+###########
+
 relkit_jenkins_state: ignored
 relkit_jenkins_stable: yes
 relkit_jenkins_groups: []
-relkit_jenkins_memory: "512m"
+relkit_jenkins_memory: 512m
 relkit_jenkins_sshkeys: []
 relkit_jenkins_http_bind_port: 8080
-relkit_jenkins_http_bind_address: "127.0.0.1"
+relkit_jenkins_http_bind_address: 127.0.0.1
+
+#########
+# aptly #
+#########
+
+relkit_aptly_api_bind_address: 0.0.0.0
+relkit_aptly_api_bind_port: 8081
+relkit_aptly_dl_bind_address: 0.0.0.0
+relkit_aptly_dl_bind_port: 8080
+relkit_aptly_repositories:
+- name: default
+  distribution: latest

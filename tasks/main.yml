@@ -1,4 +1,7 @@
 ---
+- include: aptly_present.yml
+  name: aptly_present.yml is included
+  when: relkit_aptly_state == "present"
 - include: jenkins_absent.yml
   name: jenkins_absent.yml is included
   when: relkit_jenkins_state == "absent"
