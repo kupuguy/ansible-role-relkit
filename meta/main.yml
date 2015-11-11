@@ -8,8 +8,8 @@ galaxy_info:
     [Jenkins](http://jenkins-ci.org),
     [Aptly](http://www.aptly.info),
     …
-    By default, this role does nothing as all `*_state` variables are set to ignored.
-    For the components you're interested in, set the `*_state` variables to present or absent.
+    By default, this role does nothing as all `*_state` variables are set to `ignored`.
+    For the components you're interested in, set the `*_state` variables to `present` or `absent`.
     Integration issues (firewalling, proxying…) are not handled here.
   license: MIT
   min_ansible_version: 1.8.4
