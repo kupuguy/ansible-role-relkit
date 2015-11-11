@@ -10,27 +10,25 @@ All things Build & Release. This role manages the provisioning of build and rele
 ## Supported Platforms
 
   * Ubuntu
-
   * Debian
-
 
 ## Variables
 
 | Name | Value | Description |
 |------|-------|-------------|
-| relkit_aptly_api_bind_address | default 0.0.0.0 | None |
-| relkit_aptly_api_bind_port | default 8081 | None |
-| relkit_aptly_dl_bind_address | default 0.0.0.0 | None |
-| relkit_aptly_dl_bind_port | default 8080 | None |
-| relkit_aptly_repositories | default [{'distribution': 'latest', 'name': 'default'}] | None |
-| relkit_environment | default {} | Common environment variables, such as http_proxy |
-| relkit_jenkins_groups | default [] | List of groupnames to which the jenkins user belongs |
-| relkit_jenkins_http_bind_address | default 127.0.0.1 | None |
-| relkit_jenkins_http_bind_port | default 8080 | None |
-| relkit_jenkins_memory | default 512m | How much memory the JVM can use |
-| relkit_jenkins_sshkeys | default [] | List of dicts {'keyval', 'pubval', 'filename'} |
-| relkit_jenkins_stable | default True | Boolean. If set, use Long Term Support (LTS) release |
-| relkit_jenkins_state | default ignored | One of present, absent, ignored |
+| relkit_aptly_api_bind_address | _default:_ 0.0.0.0 | None |
+| relkit_aptly_api_bind_port | _default:_ 8081 | None |
+| relkit_aptly_dl_bind_address | _default:_ 0.0.0.0 | None |
+| relkit_aptly_dl_bind_port | _default:_ 8080 | None |
+| relkit_aptly_repositories | _default:_ [{'distribution': 'latest', 'name': 'default'}] | None |
+| relkit_environment | _default:_ {} | Common environment variables, such as http_proxy |
+| relkit_jenkins_groups | _default:_ [] | List of groupnames to which the jenkins user belongs |
+| relkit_jenkins_http_bind_address | _default:_ 127.0.0.1 | None |
+| relkit_jenkins_http_bind_port | _default:_ 8080 | None |
+| relkit_jenkins_memory | _default:_ 512m | How much memory the JVM can use |
+| relkit_jenkins_sshkeys | _default:_ [] | List of dicts {'keyval', 'pubval', 'filename'} |
+| relkit_jenkins_stable | _default:_ True | Boolean. If set, use Long Term Support (LTS) release |
+| relkit_jenkins_state | _default:_ ignored | One of present, absent, ignored |
 
 
 
