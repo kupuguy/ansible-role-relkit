@@ -1,7 +1,7 @@
 
 <!-- THIS IS A GENERATED FILE, DO NOT EDIT -->
 
-All things Build & Release. This role manages the provisioning of Build and Release tools and services: Jenkins (CI Service), Aptly (Debian Repository).
+All things Build & Release. This role manages the provisioning of build and release tools and services: Jenkins (CI Service), Aptly (Debian Repository). Usage: by default, this role does nothing as all `*_state` variables are set to ignored. For the components you're interested in, set the `*_state` variables to present or absent.
 
 
 * * *
