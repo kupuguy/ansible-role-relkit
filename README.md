@@ -9,7 +9,9 @@ All things Build & Release. This role manages the provisioning of build and rele
 
 ## Supported Platforms
 
-No supported platform specified (yet.)
+  * Ubuntu
+
+  * Debian
 
 
 ## Variables

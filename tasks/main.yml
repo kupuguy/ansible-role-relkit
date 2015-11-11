@@ -1,4 +1,8 @@
 ---
+- fail:
+    msg: unsupported platform -- please contact the role maintainer for support
+  name: assert the target platform is supported
+  when: ansible_distribution not in ['Ubuntu', 'Debian']
 - include: aptly_present.yml
   name: aptly_present.yml is included
   when: relkit_aptly_state == "present"
