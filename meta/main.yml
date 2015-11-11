@@ -10,7 +10,7 @@ galaxy_info:
     …
     By default, this role does nothing as all `*_state` variables are set to `ignored`.
     For the components you're interested in, set the `*_state` variables to `present` or `absent`.
-    Integration issues (firewalling, proxying…) are not handled here.
+    **NOTICE!** Integration issues (firewalling, proxying…) are not handled by this role.
   license: MIT
   min_ansible_version: 1.8.4
   platforms:
@@ -23,7 +23,7 @@ galaxy_info:
 version: 0.1
 prefix: relkit_
 variables:
-  relkit_environment: "Environment variables, such as http_proxy"
+  relkit_environment: "Common environment variables, such as http_proxy"
   relkit_jenkins_state: "One of present, absent, ignored"
   relkit_jenkins_memory: "How much memory the JVM can use"
   relkit_jenkins_stable: "Boolean. If set, use Long Term Support (LTS) release"

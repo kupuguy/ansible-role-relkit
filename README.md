@@ -1,7 +1,7 @@
 
 <!-- THIS IS A GENERATED FILE, DO NOT EDIT -->
 
-All things Build & Release. This role manages the provisioning of build and release tools and services: [Jenkins](http://jenkins-ci.org), [Aptly](http://www.aptly.info), … By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`. Integration issues (firewalling, proxying…) are not handled here.
+All things Build & Release. This role manages the provisioning of build and release tools and services: [Jenkins](http://jenkins-ci.org), [Aptly](http://www.aptly.info), … By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`. **NOTICE!** Integration issues (firewalling, proxying…) are not handled by this role.
 
 
 * * *
@@ -23,7 +23,7 @@ All things Build & Release. This role manages the provisioning of build and rele
 | relkit_aptly_dl_bind_address | default 0.0.0.0 | None |
 | relkit_aptly_dl_bind_port | default 8080 | None |
 | relkit_aptly_repositories | default [{'distribution': 'latest', 'name': 'default'}] | None |
-| relkit_environment | default {} | Environment variables, such as http_proxy |
+| relkit_environment | default {} | Common environment variables, such as http_proxy |
 | relkit_jenkins_groups | default [] | List of groupnames to which the jenkins user belongs |
 | relkit_jenkins_http_bind_address | default 127.0.0.1 | None |
 | relkit_jenkins_http_bind_port | default 8080 | None |
