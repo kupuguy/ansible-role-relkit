@@ -1,7 +1,7 @@
 
 <!-- THIS IS A GENERATED FILE, DO NOT EDIT -->
 
-All things Build & Release. This role manages the provisioning of build and release tools and services: Jenkins, Aptly, … **Usage**: by default, this role does nothing as all `*_state` variables are set to ignored. For the components you're interested in, set the `*_state` variables to present or absent.
+All things Build & Release. This role manages the provisioning of build and release tools and services: [Jenkins](http://jenkins-ci.org), [Aptly](http://www.aptly.info), … By default, this role does nothing as all `*_state` variables are set to ignored. For the components you're interested in, set the `*_state` variables to present or absent. Integration issues (firewalling, proxying…) are not handled here.
 
 
 * * *
