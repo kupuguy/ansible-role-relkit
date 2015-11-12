@@ -37,6 +37,8 @@ include_when:
 usage_complement: >
   By default, this role does nothing as all `*_state` variables are set to `ignored`.
   For the components you're interested in, set the `*_state` variables to `present` or `absent`.
+  As a best practice,
+  all the configuration should be done in the inventory or varfiles, do not modify your taskfiles.
 
   The following components are available:
     * [Jenkins](http://jenkins-ci.org) — CI Service, `relkit_jenkins_*`
