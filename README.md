@@ -1,7 +1,7 @@
 
 <!-- THIS IS A GENERATED FILE, DO NOT EDIT -->
 
-All things Build & Release. This role manages the provisioning of various B&R tools and services, including build environment, continuous integration services and package repositories.
+All things Build & Release. This role manages the provisioning of various B&R tools and services, including build environments, continuous integration services and package repositories.
 
 
 * * *
