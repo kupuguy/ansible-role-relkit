@@ -43,8 +43,8 @@ please refer to the Ansible documentation at https://docs.ansible.com/playbooks_
 
 By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 The following components are available:
-  * Jenkins, CI Service
-  * Aptly, Debian Repository
+  * `relkit_jenkins_state` — Jenkins, CI Service
+  * `relkit_aptly_state` — Aptly, Debian Repository
   * …
 
 **NOTICE!** Integration issues (firewalling, proxying…) are not managed here, use a support role.
