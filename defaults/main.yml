@@ -21,7 +21,7 @@ relkit_jenkins_http_address: 127.0.0.1
 relkit_aptly_api_address: 0.0.0.0
 relkit_aptly_api_port: 8081
 relkit_aptly_dl_address: 0.0.0.0
-relkit_aptly_dl_port: 8080
+relkit_aptly_dl_port: 8082
 relkit_aptly_repositories:
 - name: default
   distribution: latest
