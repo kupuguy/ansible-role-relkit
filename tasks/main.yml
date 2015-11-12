@@ -4,11 +4,11 @@
   name: Assert the target platform is supported
   when: ansible_distribution not in ['Ubuntu', 'Debian']
 - include: aptly_present.yml
-  name: Aptly_Present.Yml is included
+  name: Taskfile aptly_present.yml is included
   when: relkit_aptly_state == "present"
 - include: jenkins_absent.yml
-  name: Jenkins_Absent.Yml is included
+  name: Taskfile jenkins_absent.yml is included
   when: relkit_jenkins_state == "absent"
 - include: jenkins_present.yml
-  name: Jenkins_Present.Yml is included
+  name: Taskfile jenkins_present.yml is included
   when: relkit_jenkins_state == "present"
