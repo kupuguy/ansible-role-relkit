@@ -1,10 +1,7 @@
 
 <!-- THIS IS A GENERATED FILE, DO NOT EDIT -->
 
-All things Build & Release. This role manages the provisioning of build and release tools and services:
-  * [Jenkins](http://jenkins-ci.org),
-  * [Aptly](http://www.aptly.info),
-  * …
+All things Build & Release. This role manages the provisioning of various B&R tools and services, including build environment, continuous integration services and package repositories.
 
 
 * * *
@@ -45,6 +42,11 @@ For further details,
 please refer to the Ansible documentation at https://docs.ansible.com/playbooks_roles.html.
 
 By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`.
+The following components are available:
+  * Jenkins, CI Service
+  * Aptly, Debian Repository
+  * …
+
 **NOTICE!** Integration issues (firewalling, proxying…) are not managed here, use a support role.
 
 
@@ -54,7 +56,7 @@ By default, this role does nothing as all `*_state` variables are set to `ignore
 Install [ansible-universe](https://github.com/fclaerho/ansible-universe)
 and run `ansible-universe check` to re-generate this distribution.
 
-The following files are generated or updated based on the role manifest `meta/main.yml`:
+The following files are generated or updated based on various role assets:
   * tasks/main.yml
   * README.md
 
