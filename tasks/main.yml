@@ -1,14 +1,14 @@
 ---
 - fail:
     msg: unsupported platform -- please contact the role maintainer for support
-  name: assert the target platform is supported
+  name: Assert the target platform is supported
   when: ansible_distribution not in ['Ubuntu', 'Debian']
 - include: aptly_present.yml
-  name: aptly_present.yml is included
+  name: Aptly_Present.Yml is included
   when: relkit_aptly_state == "present"
 - include: jenkins_absent.yml
-  name: jenkins_absent.yml is included
+  name: Jenkins_Absent.Yml is included
   when: relkit_jenkins_state == "absent"
 - include: jenkins_present.yml
-  name: jenkins_present.yml is included
+  name: Jenkins_Present.Yml is included
   when: relkit_jenkins_state == "present"
