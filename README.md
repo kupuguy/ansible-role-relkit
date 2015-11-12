@@ -43,7 +43,7 @@ The following components are available:
   * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
   * …
 
-By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`. As a best practice, all the configuration should be done in the inventory or varfiles, do not modify your taskfiles.
+By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 **NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role. Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option.
 
 
