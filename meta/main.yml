@@ -44,3 +44,4 @@ usage_complement: >
     * …
 
   **NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role.
+  Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option.

@@ -44,7 +44,7 @@ The following components are available:
   * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
   * …
 
-**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role.
+**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role. Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option.
 
 
 
