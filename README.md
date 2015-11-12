@@ -45,7 +45,8 @@ This role manages the provisioning of build and release tools and services:
   * [Aptly](http://www.aptly.info),
   * (to be completed)
 
-By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`. **NOTICE!** Integration issues (firewalling, proxying…) are not managed here, use a support role.
+By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`.
+**NOTICE!** Integration issues (firewalling, proxying…) are not managed here, use a support role.
 
 
 
@@ -58,4 +59,4 @@ The following files are generated or updated based on the role manifest `meta/ma
   * tasks/main.yml
   * README.md
 
-None
+
