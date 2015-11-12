@@ -23,8 +23,6 @@ variables:
   relkit_jenkins_state: "One of present, absent, ignored"
   relkit_jenkins_memory: "How much memory the JVM can use"
   relkit_jenkins_stable: "Boolean. If set, use Long Term Support (LTS) release"
-  relkit_jenkins_groups: "List of groupnames to which the jenkins user belongs"
-  relkit_jenkins_sshkeys: "List of dicts {'keyval', 'pubval', 'filename'}"
   relkit_jenkins_http_port: "HTTP service port to bind"
   relkit_jenkins_http_address: "HTTP service address to bind"
   relkit_aptly_api_address: "API service address to bind"

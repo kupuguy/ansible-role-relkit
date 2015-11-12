@@ -31,13 +31,6 @@
     update_cache: yes
     cache_valid_time: 3600
 
-- name: Jenkins user is in additional groups
-  user:
-    name: jenkins
-    groups: "{{ item }}"
-    append: yes
-  with_items: relkit_jenkins_groups
-
 - name: Jenkins is configured
   template:
     src: jenkins-settings.j2
@@ -46,31 +39,6 @@
     mode: "644"
   notify:
   - relkit_restart_jenkins
-
-- name: Jenkins .ssh directory is present
-  file:
-    name: /var/lib/jenkins/.ssh
-    state: directory
-    owner: jenkins
-    group: jenkins
-    mode: "700"
-
-- name: Jenkins private keys are present
-  copy:
-    content: "{{ item.keyval }}"
-    dest: "/var/lib/jenkins/.ssh/{{ item.filename }}"
-    owner: jenkins
-    group: jenkins
-    mode: "0600"
-  with_items: relkit_jenkins_sshkeys
-
-- name: Jenkins public keys are present
-  copy:
-    content: "{{ item.pubval }}"
-    dest: "/var/lib/jenkins/.ssh/{{ item.filename }}.pub"
-    owner: jenkins
-    mode: "644"
-  with_items: relkit_jenkins_sshkeys
 
 - name: Jenkins service is started
   service:

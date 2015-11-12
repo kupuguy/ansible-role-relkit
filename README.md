@@ -23,11 +23,9 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | relkit_aptly_repositories | _(default:)_ [{'distribution': 'latest', 'name': 'default'}] | List of dict {'name', 'distribution'} |
 | relkit_aptly_state | _(default:)_ ignored | None |
 | relkit_environment | _(default:)_ {} | Common environment variables, such as http_proxy |
-| relkit_jenkins_groups | _(default:)_ [] | List of groupnames to which the jenkins user belongs |
 | relkit_jenkins_http_address | _(default:)_ 127.0.0.1 | HTTP service address to bind |
 | relkit_jenkins_http_port | _(default:)_ 8080 | HTTP service port to bind |
 | relkit_jenkins_memory | _(default:)_ 512m | How much memory the JVM can use |
-| relkit_jenkins_sshkeys | _(default:)_ [] | List of dicts {'keyval', 'pubval', 'filename'} |
 | relkit_jenkins_stable | _(default:)_ True | Boolean. If set, use Long Term Support (LTS) release |
 | relkit_jenkins_state | _(default:)_ ignored | One of present, absent, ignored |
 
