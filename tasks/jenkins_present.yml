@@ -33,7 +33,7 @@
 
 - name: Jenkins is configured
   template:
-    src: jenkins-settings.j2
+    src: default.jenkins.j2
     dest: /etc/default/jenkins
     owner: root
     mode: "644"
