@@ -10,7 +10,7 @@
 
 PIDFILE="/var/run/aptly-api.pid"
 DAEMON="/usr/bin/aptly"
-ARGV="api serve -listen={{ aptly_api_listen_address }}:{{ aptly_api_listen_port }}"
+ARGV="api serve -listen={{ relkit_aptly_api_address }}:{{ relkit_aptly_api_port }}"
 UID="aptly"
 
 status() {
