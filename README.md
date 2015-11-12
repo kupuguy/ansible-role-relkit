@@ -44,7 +44,7 @@ The following components are available:
   * …
 
 By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`.
-**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role. Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option.
+**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role. Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
 
 
 
