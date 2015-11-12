@@ -18,6 +18,7 @@ relkit_jenkins_http_address: 127.0.0.1
 # aptly #
 #########
 
+relkit_aptly_state: ignored
 relkit_aptly_api_address: 0.0.0.0
 relkit_aptly_api_port: 8081
 relkit_aptly_dl_address: 0.0.0.0

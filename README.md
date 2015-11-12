@@ -21,6 +21,7 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | relkit_aptly_dl_address | _(default:)_ 0.0.0.0 | Download service address to bind |
 | relkit_aptly_dl_port | _(default:)_ 8082 | Download service port to bind |
 | relkit_aptly_repositories | _(default:)_ [{'distribution': 'latest', 'name': 'default'}] | List of dict {'name', 'distribution'} |
+| relkit_aptly_state | _(default:)_ ignored | None |
 | relkit_environment | _(default:)_ {} | Common environment variables, such as http_proxy |
 | relkit_jenkins_groups | _(default:)_ [] | List of groupnames to which the jenkins user belongs |
 | relkit_jenkins_http_address | _(default:)_ 127.0.0.1 | HTTP service address to bind |

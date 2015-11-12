@@ -77,7 +77,7 @@
   command: aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}
   with_items: relkit_aptly_repositories
 
-- name: Aptly download service is configured
+- name: Aptly DL service is configured
   template:
     src: initd.aptly-dl.j2
     dest: /etc/init.d/aptly-dl
@@ -86,7 +86,7 @@
     group: root
   notify: relkit_restart_aptly_dl
 
-- name: Aptly download service is started
+- name: Aptly DL service is started
   service:
     name: aptly-dl
     state: started
