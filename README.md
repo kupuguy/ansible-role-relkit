@@ -46,7 +46,7 @@ The following components are available:
   * Aptly — Debian Repository, `relkit_aptly_*`
   * …
 
-**NOTICE!** Integration issues (firewalling, proxying…) are not managed here, use a support role.
+**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role.
 
 
 
