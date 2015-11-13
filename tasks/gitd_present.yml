@@ -14,24 +14,25 @@
     system: no
 
 - name: present | Git bare repositories are absent
-  command: rm -rf /home/git/{{ item.name }}.git
-  when: item.state == "absent"
   with_items: relkit_gitd_repositories
+  when: item.state == "absent"
+  command: "rm -rf /home/git/{{ item.name }}.git"
+
 
 - name: present | Git bare repositories are present
+  with_items: relkit_gitd_repositories
+  when: item.state == "present"
   file:
     group: git
-    name: /home/git/{{ item.name }}.git
+    name: "/home/git/{{ item.name }}.git"
     owner: git
     state: directory
-  when: item.state == "present"
-  with_items: relkit_gitd_repositories
 
 - name: present | Git bare repositories are initialized
-  shell: git init --bare chdir=/home/git/{{ item.name }}.git
-  sudo: git
-  when: item.state == "present"
   with_items: relkit_gitd_repositories
+  when: item.state == "present"
+  shell: "git init --bare chdir=/home/git/{{ item.name }}.git"
+  sudo: git
 
 - name: present | Git service
   debug:

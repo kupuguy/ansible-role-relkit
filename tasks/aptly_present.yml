@@ -55,11 +55,12 @@
     var: cmd.stdout_lines
 
 - name: present | Testing repository is present
+  with_items: aptly_repositories
   when: "'[{{ item.name }}]' not in cmd.stdout"
   sudo: yes
   sudo_user: aptly
-  command: aptly repo create {{ item.name }}
-  with_items: aptly_repositories
+  command: "aptly repo create {{ item.name }}"
+
 
 - name: present | Aptly published repositories are assessed
   command: aptly publish list
@@ -71,11 +72,11 @@
     var: cmd.stdout_lines
 
 - name: present | Testing repository is published
+  with_items: relkit_aptly_repositories
   when: "'./{{ item.distribution }}' not in cmd.stdout"
   sudo: yes
   sudo_user: aptly
-  command: aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}
-  with_items: relkit_aptly_repositories
+  command: "aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}"
 
 - name: present | Aptly services
   debug:
