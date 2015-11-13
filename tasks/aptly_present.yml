@@ -77,7 +77,7 @@
   command: aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}
   with_items: relkit_aptly_repositories
 
-- name: present | Aptly services notification
+- name: present | Aptly services
   debug:
     msg: |
       Aptly does not come with any service manifest, use a 3rd-party role to generate them.

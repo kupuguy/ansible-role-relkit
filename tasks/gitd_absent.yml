@@ -1,0 +1,12 @@
+---
+
+- name: absent | Git user is absent
+  user:
+    name: git
+    state: absent
+    remove: yes
+
+- name: absent | Gitd package is absent
+  apt:
+    name: git
+    state: absent

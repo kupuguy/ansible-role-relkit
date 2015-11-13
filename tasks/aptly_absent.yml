@@ -1,0 +1,5 @@
+---
+
+- name: absent | Aptly service is absent
+  fail:
+    msg: not yet implemented

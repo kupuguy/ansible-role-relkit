@@ -4,8 +4,10 @@ galaxy_info:
   author: code@fclaerhout.fr
   description: >
     All things Build & Release.
-    This role manages the provisioning of various B&R tools and services,
-    including code repositories, build environments, continuous integration services
+    This role manages the provisioning of various B&R tools and services such as:
+    code repositories,
+    build environments,
+    continuous integration services
     and package repositories.
     See the usage section for the exhaustive list of available components.
   license: MIT
@@ -21,7 +23,7 @@ version: 0.1
 prefix: relkit_
 variables:
   relkit_environment: "Common environment variables, such as http_proxy"
-  relkit_jenkins_state: "One of present, absent, ignored"
+  relkit_jenkins_state: "present, absent or ignored"
   relkit_jenkins_memory: "How much memory the JVM can use"
   relkit_jenkins_stable: "Boolean. If set, use Long Term Support (LTS) release"
   relkit_jenkins_http_port: "HTTP service port to bind"
@@ -31,14 +33,21 @@ variables:
   relkit_aptly_dl_address: "Download service address to bind"
   relkit_aptly_dl_port: "Download service port to bind"
   relkit_aptly_repositories: "List of dict {'name', 'distribution'}"
+  relkit_aptly_state: "present, absent or ignored"
+  relkit_gitd_repositories: "List of dict {'name', 'state'}"
+  relkit_gitd_state: "present, absent or ignored"
 include_when:
   jenkins_present.yml: relkit_jenkins_state == "present"
   jenkins_absent.yml: relkit_jenkins_state == "absent"
   aptly_present.yml: relkit_aptly_state == "present"
+  aptly_absent.yml: relkit_aptly_state == "absent"
+  gitd_present.yml: relkit_gitd_state == "present"
+  gitd_absent.yml: relkit_gitd_state == "absent"
 usage_complement: >
   The following components are available:
     * [Jenkins](http://jenkins-ci.org) — CI Service, `relkit_jenkins_*`
     * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
+    * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) — Code repository, `relkit_gitd_*`
     * …
 
   By default, this role does nothing as all `*_state` variables are set to `ignored`.

@@ -3,9 +3,18 @@
     msg: unsupported platform -- please contact the role maintainer for support
   name: Assert the target platform is supported
   when: ansible_distribution not in ['Ubuntu', 'Debian']
+- include: aptly_absent.yml
+  name: Taskfile aptly_absent.yml is included
+  when: relkit_aptly_state == "absent"
 - include: aptly_present.yml
   name: Taskfile aptly_present.yml is included
   when: relkit_aptly_state == "present"
+- include: gitd_absent.yml
+  name: Taskfile gitd_absent.yml is included
+  when: relkit_gitd_state == "absent"
+- include: gitd_present.yml
+  name: Taskfile gitd_present.yml is included
+  when: relkit_gitd_state == "present"
 - include: jenkins_absent.yml
   name: Taskfile jenkins_absent.yml is included
   when: relkit_jenkins_state == "absent"
