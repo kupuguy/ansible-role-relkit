@@ -1,37 +1,37 @@
 ---
 
-- name: JRE7 package is present
+- name: present | JRE7 package is present
   apt:
     name: openjdk-7-jre-headless
     state: present
     update_cache: yes
     cache_valid_time: 3600
 
-- name: Additional facts are computed
+- name: present | Additional facts are computed
   set_fact:
     jenkins_url: "http://pkg.jenkins-ci.org/{{ 'debian-stable' if relkit_jenkins_stable else 'debian' }}"
 
-- name: Jenkins-ci debian repository key is present
+- name: present | Jenkins-ci debian repository key is present
   apt_key:
     id: "D50582E6"
     url: "{{ jenkins_url }}/jenkins-ci.org.key"
     state: present
   environment: "{{ relkit_environment }}"
 
-- name: Jenkins debian repository is present
+- name: present | Jenkins debian repository is present
   apt_repository:
     repo: "deb {{ jenkins_url }} binary/"
     state: present
     update_cache: yes
 
-- name: Jenkins package is present
+- name: present | Jenkins package is present
   apt:
     name: jenkins
     state: present
     update_cache: yes
     cache_valid_time: 3600
 
-- name: Jenkins is configured
+- name: present | Jenkins is configured
   template:
     src: default.jenkins.j2
     dest: /etc/default/jenkins
@@ -40,7 +40,7 @@
   notify:
   - relkit_restart_jenkins
 
-- name: Jenkins service is started
+- name: present | Jenkins service is started
   service:
     name: jenkins
     state: started

@@ -4,38 +4,38 @@
 # http://www.aptly.info/doc/overview/
 # http://www.unixmen.com/introducing-aptly-a-debian-repository-management-tool/
 
-- name: Aptly debian repository key is present
+- name: present | Aptly debian repository key is present
   apt_key:
     keyserver: keys.gnupg.net
     id: E083A3782A194991
     state: present
 
-- name: Aptly debian repository is present
+- name: present | Aptly debian repository is present
   apt_repository:
     repo: "deb http://repo.aptly.info/ squeeze main"
     state: present
 
-- name: Aptly package is present
+- name: present | Aptly package is present
   apt:
     name: aptly
     state: present
     update_cache: yes
     cache_valid_time: 3600
 
-- name: Aptly user is present
+- name: present | Aptly user is present
   user:
     name: aptly
     state: present
     system: yes
 
-- name: Aptly is configured
+- name: present | Aptly is configured
   copy:
     src: aptly.conf
     dest: /etc
     mode: "644"
     owner: root
 
-- name: Aptly cache location is present
+- name: present | Aptly cache location is present
   file:
     path: /var/cache/aptly
     mode: "700"
@@ -43,67 +43,44 @@
     group: aptly
     state: directory
 
-- name: Aptly repositories are assessed
+- name: present | Aptly repositories are assessed
   sudo: yes
   sudo_user: aptly
   command: aptly repo list
   register: cmd
   changed_when: no
 
-- name: Aptly repositories are traced
+- name: present | Aptly repositories are traced
   debug:
     var: cmd.stdout_lines
 
-- name: Testing repository is present
+- name: present | Testing repository is present
   when: "'[{{ item.name }}]' not in cmd.stdout"
   sudo: yes
   sudo_user: aptly
   command: aptly repo create {{ item.name }}
   with_items: aptly_repositories
 
-- name: Aptly published repositories are assessed
+- name: present | Aptly published repositories are assessed
   command: aptly publish list
   register: cmd
   changed_when: no
 
-- name: Aptly published repositories are traced
+- name: present | Aptly published repositories are traced
   debug:
     var: cmd.stdout_lines
 
-- name: Testing repository is published
+- name: present | Testing repository is published
   when: "'./{{ item.distribution }}' not in cmd.stdout"
   sudo: yes
   sudo_user: aptly
   command: aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}
   with_items: relkit_aptly_repositories
 
-- name: Aptly DL service is configured
-  template:
-    src: initd.aptly-dl.j2
-    dest: /etc/init.d/aptly-dl
-    mode: "755"
-    owner: root
-    group: root
-  notify: relkit_restart_aptly_dl
-
-- name: Aptly DL service is started
-  service:
-    name: aptly-dl
-    state: started
-    enabled: yes
-
-- name: Aptly API service is configured
-  template:
-    src: initd.aptly-api.j2
-    dest: /etc/init.d/aptly-api
-    mode: "755"
-    owner: root
-    group: root
-  notify: relkit_restart_aptly_api
-
-- name: Aptly API service is started
-  service:
-    name: aptly-api
-    state: started
-    enabled: yes
-
+- name: present | Aptly services notification
+  debug:
+    msg: |
+      Aptly does not come with any service manifest, use a 3rd-party role to generate them.
+      To start the services manually, run:
+      $ sudo -u aptly /usr/bin/aptly serve -listen={{ syskit_aptly_dl_address }}:{{ syskit_aptly_dl_port }}
+      $ sudo -u aptly /usr/bin/aptly api serve -listen={{ syskit_aptly_api_address }}:{{ syskit_aptly_api_port }}
