@@ -14,20 +14,20 @@ All things Build & Release. This role manages the provisioning of various B&R to
 
 | Name | Value | Description |
 |------|-------|-------------|
-| relkit_aptly_api_address | _(default:)_ 0.0.0.0 | API service address to bind |
-| relkit_aptly_api_port | _(default:)_ 8081 | API service port to bind |
-| relkit_aptly_dl_address | _(default:)_ 0.0.0.0 | Download service address to bind |
-| relkit_aptly_dl_port | _(default:)_ 8082 | Download service port to bind |
-| relkit_aptly_repositories | _(default:)_ [{'distribution': 'latest', 'name': 'default'}] | List of dict {'name', 'distribution'} |
-| relkit_aptly_state | _(default:)_ ignored | present, absent or ignored |
-| relkit_environment | _(default:)_ {} | Common environment variables, such as http_proxy |
-| relkit_gitd_repositories | _(default:)_ [] | List of dict {'name', 'state'} |
-| relkit_gitd_state | _(default:)_ ignored | present, absent or ignored |
-| relkit_jenkins_http_address | _(default:)_ 127.0.0.1 | HTTP service address to bind |
-| relkit_jenkins_http_port | _(default:)_ 8080 | HTTP service port to bind |
-| relkit_jenkins_memory | _(default:)_ 512m | How much memory the JVM can use |
-| relkit_jenkins_stable | _(default:)_ True | Boolean. If set, use Long Term Support (LTS) release |
-| relkit_jenkins_state | _(default:)_ ignored | present, absent or ignored |
+| `relkit_aptly_api_address` | _default_ `0.0.0.0` | API service address to bind |
+| `relkit_aptly_api_port` | _default_ `8081` | API service port to bind |
+| `relkit_aptly_dl_address` | _default_ `0.0.0.0` | Download service address to bind |
+| `relkit_aptly_dl_port` | _default_ `8082` | Download service port to bind |
+| `relkit_aptly_repositories` | _default_ `[{'distribution': 'latest', 'name': 'default'}]` | List of dict {'name', 'distribution'} |
+| `relkit_aptly_state` | _default_ `ignored` | present, absent or ignored |
+| `relkit_environment` | _default_ `{}` | Common environment variables, such as http_proxy |
+| `relkit_gitd_repositories` | _default_ `[]` | List of dict {'name', 'state'} |
+| `relkit_gitd_state` | _default_ `ignored` | present, absent or ignored |
+| `relkit_jenkins_http_address` | _default_ `127.0.0.1` | HTTP service address to bind |
+| `relkit_jenkins_http_port` | _default_ `8080` | HTTP service port to bind |
+| `relkit_jenkins_memory` | _default_ `512m` | How much memory the JVM can use |
+| `relkit_jenkins_stable` | _default_ `True` | Boolean. If set, use Long Term Support (LTS) release |
+| `relkit_jenkins_state` | _default_ `ignored` | present, absent or ignored |
 
 
 
