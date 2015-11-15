@@ -21,7 +21,7 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | `relkit_aptly_repositories` | _default_ `[{'distribution': 'latest', 'name': 'default'}]` | List of dict {'name', 'distribution'} |
 | `relkit_aptly_state` | _default_ `ignored` | present, absent or ignored |
 | `relkit_environment` | _default_ `{}` | Common environment variables, such as http_proxy |
-| `relkit_gitd_repositories` | _default_ `[]` | List of dict {'name', 'state'} |
+| `relkit_gitd_repositories` | _default_ `[]` | Create/delete bare repositories. List of dict {'name', 'state'} |
 | `relkit_gitd_state` | _default_ `ignored` | present, absent or ignored |
 | `relkit_jenkins_http_address` | _default_ `127.0.0.1` | HTTP service address to bind |
 | `relkit_jenkins_http_port` | _default_ `8080` | HTTP service port to bind |

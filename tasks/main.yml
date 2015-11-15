@@ -21,6 +21,3 @@
 - include: jenkins_present.yml
   name: Taskfile jenkins_present.yml is included
   when: relkit_jenkins_state == "present"
-- include: nexus_present.yml
-  name: Taskfile nexus_present.yml is included
-  when: true
