@@ -1,0 +1,36 @@
+---
+
+- user:
+    name: nexus
+    shell: /bin/bash
+    state: present
+
+- get_url:
+    dest: /home/nexus/
+    url: http://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz
+  sudo: true
+  sudo_user: nexus
+
+- sudo: true
+  sudo_user: nexus
+  unarchive:
+    copy: false
+    creates: /home/nexus/nexus-2.11.2-03
+    dest: /home/nexus/
+    src: /home/nexus/nexus-latest-bundle.tar.gz
+
+- file:
+    dest: /etc/init.d/nexus
+    src: /home/nexus/nexus-2.11.2-03/bin/nexus
+    state: link
+
+- apt:
+    name: openjdk-7-jre
+    state: present
+
+- service:
+    enabled: true
+    name: nexus
+    state: started
+  sudo: true
+  sudo_user: nexus
