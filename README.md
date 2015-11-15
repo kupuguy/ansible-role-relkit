@@ -40,13 +40,17 @@ register its ID in the `dependencies` list of the role manifest `meta/main.yml`.
 For further details,
 please refer to the Ansible documentation at https://docs.ansible.com/playbooks_roles.html.
 
+By default, this role does nothing as all `*_state` variables are set to `ignored`.
+For the components you're interested in, set the `*_state` variables to `present` or `absent`.
+
 The following components are available:
   * [Jenkins](http://jenkins-ci.org) — CI Service, `relkit_jenkins_*`
   * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
   * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) — Code repository, `relkit_gitd_*`
   * …
 
-By default, this role does nothing as all `*_state` variables are set to `ignored`. For the components you're interested in, set the `*_state` variables to `present` or `absent`. <br/> **NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role. Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
+**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role.
+Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
 
 
 
