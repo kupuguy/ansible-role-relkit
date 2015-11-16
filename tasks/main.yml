@@ -21,3 +21,9 @@
 - include: jenkins_present.yml
   name: Taskfile jenkins_present.yml is included
   when: relkit_jenkins_state == "present"
+- include: pypiserver_absent.yml
+  name: Taskfile pypiserver_absent.yml is included
+  when: relkit_pypiserver_state == "absent"
+- include: pypiserver_present.yml
+  name: Taskfile pypiserver_present.yml is included
+  when: relkit_pypiserver_state == "present"

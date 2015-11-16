@@ -1,6 +1,6 @@
 ---
 
-- name: present | Git package is present
+- name: present | Git Debian package is present
   apt:
     name: git
     state: present
@@ -13,12 +13,6 @@
     shell: /usr/bin/git-shell
     system: no
 
-- name: present | Git bare repositories are absent
-  with_items: relkit_gitd_repositories
-  when: item.state == "absent"
-  command: "rm -rf /home/git/{{ item.name }}.git"
-
-
 - name: present | Git bare repositories are present
   with_items: relkit_gitd_repositories
   when: item.state == "present"
@@ -28,15 +22,26 @@
     owner: git
     state: directory
 
+- name: present | Git bare repositories are absent
+  with_items: relkit_gitd_repositories
+  when: item.state == "absent"
+  command: "rm -rf /home/git/{{ item.name }}.git"
+
 - name: present | Git bare repositories are initialized
   with_items: relkit_gitd_repositories
   when: item.state == "present"
   shell: "git init --bare chdir=/home/git/{{ item.name }}.git"
   sudo: git
 
-- name: present | Git service
-  debug:
-    msg: |
-      Gitd does not come with a service manifest, use a 3rd-party role to generate one.
-      To start the service manually, run:
-      $ sudo -u git /usr/bin/git daemon --enable=upload-archive --export-all --syslog --user=git --group=git --reuseaddr --base-path=/home/git/ /home/git/
+- name: present | Gitd poorman service manifest is present
+  when: relkit_gitd_autostart
+  file:
+    src: gitd.sh
+    dest: /tmp
+    owner: root
+    group: root
+    mode: "500"
+
+- name: present | Gitd service is started
+  when: relkit_gitd_autostart
+  command: /tmp/gitd.sh start status

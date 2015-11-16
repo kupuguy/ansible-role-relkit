@@ -36,7 +36,10 @@ variables:
   relkit_aptly_state: "present, absent or ignored"
   relkit_gitd_repositories: "Create/delete bare repositories. List of dict {'name', 'state'}"
   relkit_gitd_state: "present, absent or ignored"
+  relkit_pypiserver_state: "present, absent or ignored"
 include_when:
+  pypiserver_present.yml: relkit_pypiserver_state == "present"
+  pypiserver_absent.yml: relkit_pypiserver_state == "absent"
   jenkins_present.yml: relkit_jenkins_state == "present"
   jenkins_absent.yml: relkit_jenkins_state == "absent"
   aptly_present.yml: relkit_aptly_state == "present"

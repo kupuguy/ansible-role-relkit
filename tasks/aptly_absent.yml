@@ -1,5 +1,39 @@
 ---
 
-- name: absent | Aptly service is absent
-  fail:
-    msg: not yet implemented
+- name: absent | Aptly service is stopped
+  when: relkit_aptly_autostart
+  command: /tmp/aptly.sh stop status
+
+- name: absent | Aptly poorman service manifest is absent
+  when: relkit_aptly_autostart
+  file:
+    path: /tmp/aptly.sh
+    state: absent
+
+- name: absent | Aptly cache location is absent
+  command: rm -rf /var/cache/aptly
+
+- name: absent | Aptly is de-configured
+  file:
+    path: /etc/aptly.conf
+    state: absent
+
+- name: absent | Aptly user is absent
+  user:
+    name: aptly
+    state: absent
+
+- name: absent | Aptly Debian package is absent
+  apt:
+    name: aptly
+    state: absent
+
+- name: absent | Aptly Debian repository is absent
+  apt_repository:
+    repo: "deb http://repo.aptly.info/ squeeze main"
+    state: absent
+
+- name: absent | Aptly Debian repository key is absent
+  apt_key:
+    keyserver: keys.gnupg.net
+    state: absent

@@ -4,18 +4,18 @@
 # http://www.aptly.info/doc/overview/
 # http://www.unixmen.com/introducing-aptly-a-debian-repository-management-tool/
 
-- name: present | Aptly debian repository key is present
+- name: present | Aptly Debian repository key is present
   apt_key:
     keyserver: keys.gnupg.net
     id: E083A3782A194991
     state: present
 
-- name: present | Aptly debian repository is present
+- name: present | Aptly Debian repository is present
   apt_repository:
     repo: "deb http://repo.aptly.info/ squeeze main"
     state: present
 
-- name: present | Aptly package is present
+- name: present | Aptly Debian package is present
   apt:
     name: aptly
     state: present
@@ -78,10 +78,16 @@
   sudo_user: aptly
   command: "aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}"
 
-- name: present | Aptly services
-  debug:
-    msg: |
-      Aptly does not come with any service manifest, use a 3rd-party role to generate them.
-      To start the services manually, run:
-      $ sudo -u aptly /usr/bin/aptly serve -listen={{ syskit_aptly_dl_address }}:{{ syskit_aptly_dl_port }}
-      $ sudo -u aptly /usr/bin/aptly api serve -listen={{ syskit_aptly_api_address }}:{{ syskit_aptly_api_port }}
+- name: present | Aptly poorman service manifest is present
+  when: relkit_aptly_autostart
+  template:
+    src: aptly.sh.j2
+    dest: /tmp/aptly.sh
+    owner: root
+    group: root
+    mode: "700"
+
+- name: present | Aptly service is started
+  when: relkit_aptly_autostart
+  command: /tmp/aptly.sh start status
+

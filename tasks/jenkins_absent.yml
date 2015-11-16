@@ -1,25 +1,26 @@
 ---
 
 - name: absent | Jenkins service is stopped
+
   service:
     name: jenkins
     state: stopped
 
-- name: absent | Jenkins package is absent
+- name: absent | Jenkins Debian package is absent
   apt:
     name: jenkins
     state: absent
 
 - name: absent | Additional facts are computed
   set_fact:
-    jenkins_url: "http://pkg.jenkins-ci.org/{{ 'debian-stable' if relkit_jenkins_stable else 'debian' }}"
+    relkit_jenkins_url: "http://pkg.jenkins-ci.org/{{ 'debian-stable' if relkit_jenkins_stable else 'debian' }}"
 
 - name: absent | Jenkins debian repository is absent
   apt_repository:
-    repo: "deb {{ jenkins_url }} binary/"
+    repo: "deb {{ relkit_jenkins_url }} binary/"
     state: absent
 
-- name: absent | Jenkins-ci debian repository key is absent
+- name: absent | Jenkins-ci Debian repository key is absent
   apt_key:
-    url: "{{ jenkins_url }}/jenkins-ci.org.key"
+    url: "{{ relkit_jenkins_url }}/jenkins-ci.org.key"
     state: absent
