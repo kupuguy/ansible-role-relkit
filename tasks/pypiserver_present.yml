@@ -1,0 +1,52 @@
+---
+
+- name: present | Pip Debian package is present
+  apt:
+    name: python-pip
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: present | Support Python packages are present
+  with_items:
+  - pypiserver
+  - passlib
+  pip:
+    name: "{{ item }}"
+    state: present
+
+- name: present | PyPI server user is present
+  user:
+    name: pypiserver
+    state: present
+    system: yes
+
+- name: present | PyPI server cache is present
+  file:
+    name: /var/cache/pypiserver
+    state: directory
+    owner: pypiserver
+    group: pypiserver
+    mode: "700"
+
+- file:
+    name: /etc/pypiserver
+    state: directory
+    owner: pypiserver
+    group: pypiserver
+    mode: "700"
+
+- copy:
+    src: "{{ pypiserver_htaccess_path|default(pypiserver_htaccess_path_default) }}"
+    dest: /etc/pypiserver
+    owner: pypiserver
+    group: pypiserver
+    mode: "600"
+  notify:
+  - restart pypiserver
+
+- name: pypiserver service is started
+  service:
+    name: pypiserver
+    state: started
+    enabled: yes
