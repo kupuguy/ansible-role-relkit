@@ -49,7 +49,7 @@ By default, this role does nothing as all `*_state` variables are set to `ignore
 For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 
 The following components are available:
-  * [PyPI Server](https://pypi.python.org/pypi/pypiserver)
+  * [PyPI Server](https://pypi.python.org/pypi/pypiserver) — Python Repository, `relkit_pypiserver_*`
   * [Jenkins](http://jenkins-ci.org) — CI Service, `relkit_jenkins_*`
   * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
   * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) — Code repository, `relkit_gitd_*`
