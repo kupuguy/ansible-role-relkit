@@ -36,12 +36,12 @@
 - name: present | Gitd poorman service manifest is present
   when: relkit_gitd_autostart
   file:
-    src: gitd.sh
-    dest: /tmp
+    src: service_gitd.sh
+    dest: /usr/local/bin
     owner: root
-    group: root
-    mode: "500"
+    group: staff
+    mode: "755"
 
 - name: present | Gitd service is started
   when: relkit_gitd_autostart
-  command: /tmp/gitd.sh start status
+  command: service_gitd.sh start status

@@ -81,13 +81,13 @@
 - name: present | Aptly poorman service manifest is present
   when: relkit_aptly_autostart
   template:
-    src: aptly.sh.j2
-    dest: /tmp/aptly.sh
+    src: service_aptly.sh.j2
+    dest: /usr/local/bin
     owner: root
-    group: root
-    mode: "700"
+    group: staff
+    mode: "755"
 
 - name: present | Aptly service is started
   when: relkit_aptly_autostart
-  command: /tmp/aptly.sh start status
+  command: service_aptly.sh start status
 

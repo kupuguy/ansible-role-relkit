@@ -4,7 +4,7 @@ relkit_environment: {}
 relkit_update: no
 
 # jenkins
-relkit_jenkins_http_address: 127.0.0.1
+relkit_jenkins_http_address: 0.0.0.0
 relkit_jenkins_http_port: 8080
 relkit_jenkins_autostart: True
 relkit_jenkins_memory: 512m
@@ -30,7 +30,7 @@ relkit_gitd_state: ignored
 # pypiserver
 relkit_pypiserver_disable_fallback: false
 relkit_pypiserver_allow_overwrite: false
-relkit_pypiserver_http_address: 127.0.0.1
+relkit_pypiserver_http_address: 0.0.0.0
 relkit_pypiserver_http_port: 8083
 relkit_pypiserver_autostart: True
 relkit_pypiserver_state: ignored
