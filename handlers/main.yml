@@ -1,17 +1,13 @@
 ---
 
-###########
-# jenkins #
-###########
+# jenkins
 
 - name: relkit_restart_jenkins
   service:
     name: jenkins
     state: restarted
 
-#########
-# aptly #
-#########
+# aptly
 
 - name: relkit_restart_aptly_dl
   service:
@@ -22,3 +18,11 @@
   service:
     name: aptly-api
     state: restarted
+
+# pypiserver
+
+- include: pypiserver_custom.yml
+  when: relkit_pypiserver_autostart
+
+- include: pypiserver_system.yml
+  when: not relkit_pypiserver_autostart
