@@ -53,7 +53,7 @@
     name: "{{ item.name }}"
     password: "{{ item.pass }}"
     state: "{{ item.state }}"
-    crypt_scheme: plaintext
+    crypt_scheme: apr_md5_crypt
   notify:
   - relkit_restart_pypiserver
 
