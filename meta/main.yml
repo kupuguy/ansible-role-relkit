@@ -84,5 +84,7 @@ usage_complement: |
       As the package doesn't not provide a service manifest,
       relkit ships the script `service_gitd.sh` to manage the service manually.
 
-  **NOTICE:** Integration issues (firewalling, proxying…) are not managed by this role.
+  **NOTICE:**
+    * Integration issues (firewalling, proxying…) are not managed by this role.
   Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
+    * Passwords `pass` are expected to be securely stored via [Ansible-vault](http://docs.ansible.com/ansible/playbooks_vault.html) (or any equivalent.)
