@@ -14,7 +14,7 @@ status() {
 }
 
 start() {
-	sudo -u ${_UID} ${DAEMON} daemon\
+	sudo -u ${_UID} nohup ${DAEMON} daemon\
 		--enable=upload-archive\
 		--export-all\
 		--syslog\

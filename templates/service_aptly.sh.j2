@@ -14,8 +14,10 @@ status() {
 }
 
 start() {
-	sudo -u ${_UID} ${DAEMON} serve -listen={{ syskit_aptly_dl_address }}:{{ syskit_aptly_dl_port }} &
-	sudo -u ${_UID} ${DAEMON} api serve -listen={{ syskit_aptly_api_address }}:{{ syskit_aptly_api_port }} &
+	sudo -u ${_UID} nohup ${DAEMON}\
+		serve -listen={{ syskit_aptly_dl_address }}:{{ syskit_aptly_dl_port }} &
+	sudo -u ${_UID} nohup ${DAEMON}\
+		api serve -listen={{ syskit_aptly_api_address }}:{{ syskit_aptly_api_port }} &
 }
 
 stop() {
