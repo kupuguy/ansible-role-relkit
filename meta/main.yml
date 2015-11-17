@@ -83,5 +83,5 @@ usage_complement: |
       Note: as the package doesn't not provide a service manifest,
       relkit ships the script `service_pypiserver.sh` to manage the service manually.
 
-  **NOTICE!** Integration issues (firewalling, proxying…) are not managed by this role.
+  **NOTICE:** Integration issues (firewalling, proxying…) are not managed by this role.
   Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
