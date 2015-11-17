@@ -49,7 +49,7 @@
 - name: present | PyPI server accounts are present/absent
   with_items: relkit_pypiserver_users
   htpasswd:
-    path: /etc/pypiserver/
+    path: /etc/pypiserver/htaccess
     name: "{{ item.name }}"
     password: "{{ item.pass }}"
     state: "{{ item.state }}"
