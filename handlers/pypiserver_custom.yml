@@ -1,0 +1,4 @@
+---
+
+- name: relkit_restart_pypiserver
+  command: service_pypiserver.sh stop start

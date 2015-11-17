@@ -1,0 +1,6 @@
+---
+
+- name: relkit_restart_pypiserver
+  service:
+    name: pypiserver
+    status: restarted
