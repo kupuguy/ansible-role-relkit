@@ -23,7 +23,7 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | `relkit_aptly_state` | _default_ `ignored` | present, absent or ignored |
 | `relkit_environment` | _default_ `{}` | Common environment variables, such as http_proxy |
 | `relkit_gitd_autostart` | _default_ `True` | Boolean. If set, install the support script and manage the service status. |
-| `relkit_gitd_repositories` | _default_ `[]` | Create/delete bare repositories. List of dict {'name', 'state'} |
+| `relkit_gitd_repositories` | _default_ `[]` | Create/delete bare repositories. List of dict {'name', 'state': present/absent} |
 | `relkit_gitd_state` | _default_ `ignored` | present, absent or ignored |
 | `relkit_jenkins_autostart` | _default_ `True` | Boolean. If set, manage the service status. |
 | `relkit_jenkins_http_address` | _default_ `0.0.0.0` | HTTP service address to bind |
@@ -37,7 +37,7 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | `relkit_pypiserver_http_address` | _default_ `0.0.0.0` | HTTP service address to bind |
 | `relkit_pypiserver_http_port` | _default_ `8083` | HTTP service port to bind |
 | `relkit_pypiserver_state` | _default_ `ignored` | present, absent or ignored |
-| `relkit_pypiserver_users` | _default_ `[]` | List of dict {'name', 'pass', 'state'} |
+| `relkit_pypiserver_users` | _default_ `[]` | List of dict {'name', 'pass', 'state': present/absent} |
 | `relkit_update` | _default_ `False` | Update packages when possible |
 
 

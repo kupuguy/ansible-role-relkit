@@ -50,7 +50,7 @@
   with_items: relkit_pypiserver_users
   htpasswd:
     path: /etc/pypiserver/
-    user: "{{ item.name }}"
+    name: "{{ item.name }}"
     password: "{{ item.pass }}"
     state: "{{ item.state }}"
     crypt_scheme: md5_crypt

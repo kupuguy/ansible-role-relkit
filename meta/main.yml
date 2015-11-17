@@ -42,7 +42,7 @@ variables:
   relkit_aptly_dl_port: "Download service port to bind"
   relkit_aptly_state: "present, absent or ignored"
 # gitd
-  relkit_gitd_repositories: "Create/delete bare repositories. List of dict {'name', 'state'}"
+  relkit_gitd_repositories: "Create/delete bare repositories. List of dict {'name', 'state': present/absent}"
   relkit_gitd_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_gitd_state: "present, absent or ignored"
 # pypiserver
@@ -52,7 +52,7 @@ variables:
   relkit_pypiserver_http_port: "HTTP service port to bind"
   relkit_pypiserver_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_pypiserver_state: "present, absent or ignored"
-  relkit_pypiserver_users: "List of dict {'name', 'pass', 'state'}"
+  relkit_pypiserver_users: "List of dict {'name', 'pass', 'state': present/absent}"
 
 include_when:
   pypiserver_present.yml: relkit_pypiserver_state == "present"
