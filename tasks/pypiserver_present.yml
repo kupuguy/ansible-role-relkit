@@ -41,7 +41,7 @@
 - name: present | PyPI server htaccess is present
   copy:
     content: ""
-    path: /etc/pypiserver/htaccess
+    dest: /etc/pypiserver/htaccess
     owner: pypiserver
     group: pypiserver
     mode: "600"
