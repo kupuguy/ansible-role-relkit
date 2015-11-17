@@ -5,7 +5,7 @@ DAEMON=/usr/local/bin/pypi-server
 _UID=pypiserver
 
 status() {
-	if pgrep -u ${_UID} ${DAEMON}
+	if pgrep -u ${_UID} $(basename ${DAEMON})
 	then
 		echo "service is running"
 	else
@@ -14,11 +14,11 @@ status() {
 }
 
 start() {
-	sudo -u ${_UID} ${DAEMON} --interface {{ relkit_pypiserver_http_address }} --port {{ relkit_pypiserver_http_port }} --passwords /etc/pypiserver/htaccess {{ '--overwrite' if relkit_pypiserver_allow_overwrite else '' }} {{ '--disable-fallback' if relkit_pypiserver_disable_fallback else '' }} /var/cache/pypiserver
+	sudo -u ${_UID} ${DAEMON} --interface {{ relkit_pypiserver_http_address }} --port {{ relkit_pypiserver_http_port }} --passwords /etc/pypiserver/htaccess {{ '--overwrite' if relkit_pypiserver_allow_overwrite else '' }} {{ '--disable-fallback' if relkit_pypiserver_disable_fallback else '' }} /var/cache/pypiserver &
 }
 
 stop() {
-	killall -u ${_UID} ${DAEMON}
+	killall -u ${_UID} $(basename ${DAEMON})
 }
 
 for arg

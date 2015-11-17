@@ -5,7 +5,7 @@ DAEMON=/usr/bin/git
 _UID=git
 
 status() {
-	if pgrep -u ${_UID} ${DAEMON}
+	if pgrep -u ${_UID} $(basename ${DAEMON})
 	then
 		echo "service is running"
 	else
@@ -26,7 +26,7 @@ start() {
 }
 
 stop() {
-	killall -u ${_UID} ${DAEMON}
+	killall -u ${_UID} $(basename ${DAEMON})
 }
 
 for arg
