@@ -29,15 +29,15 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | `relkit_jenkins_http_address` | _default_ `127.0.0.1` | HTTP service address to bind |
 | `relkit_jenkins_http_port` | _default_ `8080` | HTTP service port to bind |
 | `relkit_jenkins_memory` | _default_ `512m` | How much memory the JVM can use |
-| `relkit_jenkins_stable` | _default_ `True` | Boolean. If set, use Long Term Support (LTS) release |
+| `relkit_jenkins_stable` | _default_ `True` | Boolean. If set, use Long Term Support (LTS) release (recommended.) |
 | `relkit_jenkins_state` | _default_ `ignored` | present, absent or ignored |
-| `relkit_pypiserver_address` | _default_ `127.0.0.1` |  |
-| `relkit_pypiserver_allow_overwrite` | _default_ `False` |  |
+| `relkit_pypiserver_allow_overwrite` | _default_ `False` | Boolean. If set, the same version of a package can be re-uploaded. |
 | `relkit_pypiserver_autostart` | _default_ `True` | Boolean. If set, manage the service status. |
-| `relkit_pypiserver_mirroring` | _default_ `False` |  |
-| `relkit_pypiserver_port` | _default_ `8080` |  |
+| `relkit_pypiserver_disable_fallback` | _default_ `False` | Boolean. If set, packages are fetched from PyPI on fallback. |
+| `relkit_pypiserver_http_address` | _default_ `127.0.0.1` | HTTP service address to bind |
+| `relkit_pypiserver_http_port` | _default_ `8083` | HTTP service port to bind |
 | `relkit_pypiserver_state` | _default_ `ignored` | present, absent or ignored |
-| `relkit_update` | _default_ `False` |  |
+| `relkit_update` | _default_ `False` | Update package |
 
 
 
@@ -56,16 +56,18 @@ For the components you're interested in, set the `*_state` variables to `present
 The following components are available:
   * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
     Variables: `relkit_pypiserver_*`.
-    Note: the package doesn't not provide a service manifest,
-    relkit provides the script `service_pypiserver.sh` to start/stop the service instead.
+    Note: as the package doesn't not provide a service manifest,
+    relkit ships the script `service_pypiserver.sh` to manage the service manually.
   * [Jenkins](http://jenkins-ci.org), Continuous Integration Service.
-    Variables: `relkit_jenkins_*`
+    Variables: `relkit_jenkins_*`.
   * [Aptly](http://www.aptly.info), Debian Repository.
-    Variables: `relkit_aptly_*`
+    Variables: `relkit_aptly_*`.
+    Note: as the package doesn't not provide a service manifest,
+    relkit ships the script `service_pypiserver.sh` to manage the service manually.
   * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon), Code repository.
     Variables: `relkit_gitd_*`.
-    Note: the package doesn't not provide a service manifest,
-    relkit provides the script `service_pypiserver.sh` to start/stop the service instead.
+    Note: as the package doesn't not provide a service manifest,
+    relkit ships the script `service_pypiserver.sh` to manage the service manually.
 
 **NOTICE!** Integration issues (firewalling, proxying…) are not managed by this role.
 Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.

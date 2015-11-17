@@ -3,10 +3,7 @@
 relkit_environment: {}
 relkit_update: no
 
-###########
-# jenkins #
-###########
-
+# jenkins
 relkit_jenkins_http_address: 127.0.0.1
 relkit_jenkins_http_port: 8080
 relkit_jenkins_autostart: True
@@ -14,10 +11,7 @@ relkit_jenkins_memory: 512m
 relkit_jenkins_stable: yes
 relkit_jenkins_state: ignored
 
-#########
-# aptly #
-#########
-
+# aptly
 relkit_aptly_repositories:
 - name: default
   distribution: latest
@@ -28,21 +22,16 @@ relkit_aptly_api_port: 8081
 relkit_aptly_dl_port: 8082
 relkit_aptly_state: ignored
 
-########
-# gitd #
-########
-
+# gitd
 relkit_gitd_repositories: []
 relkit_gitd_autostart: True
 relkit_gitd_state: ignored
 
-##############
-# pypiserver #
-##############
-
+# pypiserver
+relkit_pypiserver_disable_fallback: false
 relkit_pypiserver_allow_overwrite: false
-relkit_pypiserver_mirroring: false
+relkit_pypiserver_http_address: 127.0.0.1
+relkit_pypiserver_http_port: 8083
 relkit_pypiserver_autostart: True
-relkit_pypiserver_address: 127.0.0.1
 relkit_pypiserver_state: ignored
-relkit_pypiserver_port: '8080'
+
