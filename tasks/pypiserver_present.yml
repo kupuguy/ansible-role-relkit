@@ -60,7 +60,7 @@
 - name: present | PyPI server poorman service manifest is present
   when: relkit_pypiserver_autostart
   template:
-    src: service_pypiserver.sh
+    src: service_pypiserver.sh.j2
     dest: /usr/local/bin
     owner: root
     group: staff
