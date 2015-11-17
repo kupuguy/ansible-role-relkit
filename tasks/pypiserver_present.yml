@@ -3,7 +3,7 @@
 - name: present | Pip Debian package is present
   apt:
     name: python-pip
-    state: present
+    state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
     cache_valid_time: 3600
 
@@ -14,6 +14,7 @@
   pip:
     name: "{{ item }}"
     state: present
+    extra_args: "{{ '--upgrade' if relkit_update else '' }}"
 
 - name: present | PyPI server user is present
   user:
@@ -46,6 +47,7 @@
   - restart pypiserver
 
 - name: pypiserver service is started
+  when: relkit_pypiserver_autostart
   service:
     name: pypiserver
     state: started

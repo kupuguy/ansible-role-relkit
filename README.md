@@ -31,8 +31,13 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | `relkit_jenkins_memory` | _default_ `512m` | How much memory the JVM can use |
 | `relkit_jenkins_stable` | _default_ `True` | Boolean. If set, use Long Term Support (LTS) release |
 | `relkit_jenkins_state` | _default_ `ignored` | present, absent or ignored |
+| `relkit_pypiserver_address` | _default_ `127.0.0.1` |  |
+| `relkit_pypiserver_allow_overwrite` | _default_ `False` |  |
 | `relkit_pypiserver_autostart` | _default_ `True` | Boolean. If set, manage the service status. |
+| `relkit_pypiserver_mirroring` | _default_ `False` |  |
+| `relkit_pypiserver_port` | _default_ `8080` |  |
 | `relkit_pypiserver_state` | _default_ `ignored` | present, absent or ignored |
+| `relkit_update` | _default_ `False` |  |
 
 
 
@@ -49,13 +54,20 @@ By default, this role does nothing as all `*_state` variables are set to `ignore
 For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 
 The following components are available:
-  * [PyPI Server](https://pypi.python.org/pypi/pypiserver) — Python Repository, `relkit_pypiserver_*`
-  * [Jenkins](http://jenkins-ci.org) — CI Service, `relkit_jenkins_*`
-  * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
-  * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) — Code repository, `relkit_gitd_*`
-  * …
+  * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
+    Variables: `relkit_pypiserver_*`.
+    Note: the package doesn't not provide a service manifest,
+    relkit provides the script `service_pypiserver.sh` to start/stop the service instead.
+  * [Jenkins](http://jenkins-ci.org), Continuous Integration Service.
+    Variables: `relkit_jenkins_*`
+  * [Aptly](http://www.aptly.info), Debian Repository.
+    Variables: `relkit_aptly_*`
+  * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon), Code repository.
+    Variables: `relkit_gitd_*`.
+    Note: the package doesn't not provide a service manifest,
+    relkit provides the script `service_pypiserver.sh` to start/stop the service instead.
 
-**NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role.
+**NOTICE!** Integration issues (firewalling, proxying…) are not managed by this role.
 Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
 
 

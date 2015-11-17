@@ -18,7 +18,7 @@
 - name: present | Aptly Debian package is present
   apt:
     name: aptly
-    state: present
+    state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
     cache_valid_time: 3600
 

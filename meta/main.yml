@@ -55,11 +55,18 @@ usage_complement: |
   For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 
   The following components are available:
-    * [PyPI Server](https://pypi.python.org/pypi/pypiserver) — Python Repository, `relkit_pypiserver_*`
-    * [Jenkins](http://jenkins-ci.org) — CI Service, `relkit_jenkins_*`
-    * [Aptly](http://www.aptly.info) — Debian Repository, `relkit_aptly_*`
-    * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon) — Code repository, `relkit_gitd_*`
-    * …
+    * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
+      Variables: `relkit_pypiserver_*`.
+      Note: the package doesn't not provide a service manifest,
+      relkit provides the script `service_pypiserver.sh` to start/stop the service instead.
+    * [Jenkins](http://jenkins-ci.org), Continuous Integration Service.
+      Variables: `relkit_jenkins_*`
+    * [Aptly](http://www.aptly.info), Debian Repository.
+      Variables: `relkit_aptly_*`
+    * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon), Code repository.
+      Variables: `relkit_gitd_*`.
+      Note: the package doesn't not provide a service manifest,
+      relkit provides the script `service_pypiserver.sh` to start/stop the service instead.
 
-  **NOTICE!** Integration issues (accounts, firewalling, proxying…) are not managed by this role.
+  **NOTICE!** Integration issues (firewalling, proxying…) are not managed by this role.
   Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
