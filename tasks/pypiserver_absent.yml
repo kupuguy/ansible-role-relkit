@@ -1,4 +1,47 @@
 ---
 
-- fail:
-    msg: not yet implemented
+- name: absent | PyPI server service is stopped
+  when: relkit_pypiserver_autostart
+  command: service_pypiserver.sh stop status
+
+- name: absent | PyPI server poorman service manifest is absent
+  when: relkit_pypiserver_autostart
+  file:
+    dest: /usr/local/bin/service_pypiserver.sh
+    state: absent
+
+- name: absent | Assess PyPI configuration directory stat
+  register: cmd
+  stat:
+    path: /etc/pypiserver
+
+- name: absent | PyPI server configuration directory is absent
+  when: cmd.stat.exists
+  command: rm -rf /etc/pypiserver
+
+- name: absent | Assess PyPI cache directory stat
+  register: cmd
+  stat:
+    path: /var/cache/pypiserver
+
+- name: absent | PyPI server cache directory is absent
+  when: cmd.stat.exists
+  command: rm -rf /var/cache/pypiserver
+
+- name: absent | PyPI server user is absent
+  user:
+    name: pypiserver
+    state: absent
+
+- name: absent | Support Python packages are absent
+  with_items:
+  - pypiserver
+  - passlib
+  pip:
+    name: "{{ item }}"
+    state: absent
+
+- name: present | Pip Debian package is present
+  apt:
+    name: python-pip
+    state: absent

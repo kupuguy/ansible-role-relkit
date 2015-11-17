@@ -22,7 +22,7 @@
     state: present
     system: yes
 
-- name: present | PyPI server cache is present
+- name: present | PyPI server cache directory is present
   file:
     name: /var/cache/pypiserver
     state: directory

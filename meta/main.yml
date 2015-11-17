@@ -25,7 +25,7 @@ prefix: relkit_
 variables:
 # common
   relkit_environment: "Common environment variables, such as http_proxy"
-  relkit_update: "Update package"
+  relkit_update: "Update packages when possible"
 # jenkins
   relkit_jenkins_http_address: "HTTP service address to bind"
   relkit_jenkins_http_port: "HTTP service port to bind"

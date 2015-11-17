@@ -38,7 +38,7 @@ All things Build & Release. This role manages the provisioning of various B&R to
 | `relkit_pypiserver_http_port` | _default_ `8083` | HTTP service port to bind |
 | `relkit_pypiserver_state` | _default_ `ignored` | present, absent or ignored |
 | `relkit_pypiserver_users` | _default_ `[]` | List of dict {'name', 'pass', 'state'} |
-| `relkit_update` | _default_ `False` | Update package |
+| `relkit_update` | _default_ `False` | Update packages when possible |
 
 
 
