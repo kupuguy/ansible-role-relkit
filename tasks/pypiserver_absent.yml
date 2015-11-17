@@ -2,7 +2,7 @@
 
 - name: absent | PyPI server service is stopped
   when: relkit_pypiserver_autostart
-  command: service_pypiserver.sh stop status
+  shell: which service_pypiserver.sh && service_pypiserver.sh stop status
 
 - name: absent | PyPI server poorman service manifest is absent
   when: relkit_pypiserver_autostart
