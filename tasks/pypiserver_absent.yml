@@ -39,10 +39,16 @@
     name: pypiserver
     state: absent
 
+- name: absent | Assess pip presence
+  register: cmd
+  command: which pip
+  ignore_errors: yes
+
 - name: absent | Support Python packages are absent
   with_items:
   - pypiserver
   - passlib
+  when: cmd.rc == 0
   pip:
     name: "{{ item }}"
     state: absent
