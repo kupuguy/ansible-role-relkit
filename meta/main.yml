@@ -37,20 +37,20 @@ variables:
   relkit_aptly_repositories: "List of dict {'name', 'distribution'}"
   relkit_aptly_api_address: "API service address to bind"
   relkit_aptly_dl_address: "Download service address to bind"
-  relkit_aptly_autostart: "Boolean. If set, manage the service status."
+  relkit_aptly_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_aptly_api_port: "API service port to bind"
   relkit_aptly_dl_port: "Download service port to bind"
   relkit_aptly_state: "present, absent or ignored"
 # gitd
   relkit_gitd_repositories: "Create/delete bare repositories. List of dict {'name', 'state'}"
-  relkit_gitd_autostart: "Boolean. If set, manage the service status."
+  relkit_gitd_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_gitd_state: "present, absent or ignored"
 # pypiserver
   relkit_pypiserver_disable_fallback: "Boolean. If set, packages are fetched from PyPI on fallback."
   relkit_pypiserver_allow_overwrite: "Boolean. If set, the same version of a package can be re-uploaded."
   relkit_pypiserver_http_address: "HTTP service address to bind"
   relkit_pypiserver_http_port: "HTTP service port to bind"
-  relkit_pypiserver_autostart: "Boolean. If set, manage the service status."
+  relkit_pypiserver_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_pypiserver_state: "present, absent or ignored"
 
 include_when:
@@ -71,20 +71,17 @@ usage_complement: |
     * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
       Variables: `relkit_pypiserver_*`.
       Note: as the package doesn't not provide a service manifest,
-      relkit ships the script `service_pypiserver.sh` to manage the service manually
-      (disabled if `relkit_pypiserver_autostart` if off.)
+      relkit ships the script `service_pypiserver.sh` to manage the service.
     * [Jenkins](http://jenkins-ci.org), Continuous Integration Service.
       Variables: `relkit_jenkins_*`.
     * [Aptly](http://www.aptly.info), Debian Repository.
       Variables: `relkit_aptly_*`.
       Note: as the package doesn't not provide a service manifest,
-      relkit ships the script `service_aptly.sh` to manage the service manually
-      (disabled if `relkit_aptly_autostart` if off.)
+      relkit ships the script `service_aptly.sh` to manage the service.
     * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon), Code repository.
       Variables: `relkit_gitd_*`.
       Note: as the package doesn't not provide a service manifest,
-      relkit ships the script `service_gitd.sh` to manage the service manually
-      (disabled if `relkit_gitd_autostart` if off.)
+      relkit ships the script `service_gitd.sh` to manage the service.
 
   **NOTICE:** Integration issues (firewalling, proxying…) are not managed by this role.
   Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
