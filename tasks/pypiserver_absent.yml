@@ -41,7 +41,7 @@
     name: "{{ item }}"
     state: absent
 
-- name: present | Pip Debian package is present
+- name: absent | Pip Debian package is absent
   apt:
     name: python-pip
     state: absent
