@@ -2,10 +2,10 @@
 # copyright (c) 2015 fclaerhout.fr, released under the MIT license.
 
 DAEMON=/usr/bin/git
-UID=git
+_UID=git
 
 status() {
-	if pgrep -u ${UID} ${DAEMON}
+	if pgrep -u ${_UID} ${DAEMON}
 	then
 		echo "service is running"
 	else
@@ -14,7 +14,7 @@ status() {
 }
 
 start() {
-	sudo -u ${UID} ${DAEMON} daemon\
+	sudo -u ${_UID} ${DAEMON} daemon\
 		--enable=upload-archive\
 		--export-all\
 		--syslog\
@@ -26,7 +26,7 @@ start() {
 }
 
 stop() {
-	killall -u ${UID} ${DAEMON}
+	killall -u ${_UID} ${DAEMON}
 }
 
 for arg

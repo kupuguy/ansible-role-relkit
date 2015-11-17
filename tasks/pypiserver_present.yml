@@ -61,7 +61,7 @@
   when: relkit_pypiserver_autostart
   template:
     src: service_pypiserver.sh.j2
-    dest: /usr/local/bin
+    dest: /usr/local/bin/service_pypiserver.sh
     owner: root
     group: staff
     mode: "755"

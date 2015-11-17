@@ -2,10 +2,10 @@
 # copyright (c) 2015 fclaerhout.fr, released under the MIT license.
 
 DAEMON=/usr/bin/aptly
-UID=aptly
+_UID=aptly
 
 status() {
-	if pgrep -u ${UID} ${DAEMON}
+	if pgrep -u ${_UID} ${DAEMON}
 	then
 		echo "service is running"
 	else
@@ -14,12 +14,12 @@ status() {
 }
 
 start() {
-	sudo -u ${UID} ${DAEMON} serve -listen={{ syskit_aptly_dl_address }}:{{ syskit_aptly_dl_port }} &
-	sudo -u ${UID} ${DAEMON} api serve -listen={{ syskit_aptly_api_address }}:{{ syskit_aptly_api_port }} &
+	sudo -u ${_UID} ${DAEMON} serve -listen={{ syskit_aptly_dl_address }}:{{ syskit_aptly_dl_port }} &
+	sudo -u ${_UID} ${DAEMON} api serve -listen={{ syskit_aptly_api_address }}:{{ syskit_aptly_api_port }} &
 }
 
 stop() {
-	killall -u ${UID} ${DAEMON}
+	killall -u ${_UID} ${DAEMON}
 }
 
 for arg

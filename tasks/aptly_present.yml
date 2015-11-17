@@ -82,7 +82,7 @@
   when: relkit_aptly_autostart
   template:
     src: service_aptly.sh.j2
-    dest: /usr/local/bin
+    dest: /usr/local/bin/service_aptly.sh
     owner: root
     group: staff
     mode: "755"
