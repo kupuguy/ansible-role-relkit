@@ -46,12 +46,13 @@ variables:
   relkit_gitd_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_gitd_state: "present, absent or ignored"
 # pypiserver
-  relkit_pypiserver_disable_fallback: "Boolean. If set, packages are fetched from PyPI on fallback."
+  relkit_pypiserver_disable_fallback: "Boolean. If not set, packages are fetched from PyPI on fallback."
   relkit_pypiserver_allow_overwrite: "Boolean. If set, the same version of a package can be re-uploaded."
   relkit_pypiserver_http_address: "HTTP service address to bind"
   relkit_pypiserver_http_port: "HTTP service port to bind"
   relkit_pypiserver_autostart: "Boolean. If set, install the support script and manage the service status."
   relkit_pypiserver_state: "present, absent or ignored"
+  relkit_pypiserver_users: "List of dict {'name', 'pass', 'state'}"
 
 include_when:
   pypiserver_present.yml: relkit_pypiserver_state == "present"

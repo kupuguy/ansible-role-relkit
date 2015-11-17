@@ -30,25 +30,42 @@
     group: pypiserver
     mode: "700"
 
-- file:
+- name: present | PyPI server configuration directory is present
+  file:
     name: /etc/pypiserver
     state: directory
     owner: pypiserver
     group: pypiserver
     mode: "700"
 
-- copy:
-    src: "{{ pypiserver_htaccess_path|default(pypiserver_htaccess_path_default) }}"
-    dest: /etc/pypiserver
+- name: present | PyPI server htaccess is present
+  copy:
+    content: ""
+    path: /etc/pypiserver/htaccess
     owner: pypiserver
     group: pypiserver
     mode: "600"
-  notify:
-  - restart pypiserver
 
-- name: pypiserver service is started
+- name: present | PyPI server accounts are present/absent
+  with_items: relkit_pypiserver_users
+  htpasswd:
+    path: /etc/pypiserver/
+    user: "{{ item.name }}"
+    password: "{{ item.pass }}"
+    state: "{{ item.state }}"
+    crypt_scheme: md5_crypt
+  notify:
+  - relkit_restart_pypiserver
+
+- name: present | PyPI server poorman service manifest is present
   when: relkit_pypiserver_autostart
-  service:
-    name: pypiserver
-    state: started
-    enabled: yes
+  template:
+    src: service_pypiserver.sh
+    dest: /usr/local/bin
+    owner: root
+    group: staff
+    mode: "755"
+
+- name: present | PyPI server service is started
+  when: relkit_pypiserver_autostart
+  command: service_pypiserver.sh start status

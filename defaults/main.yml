@@ -34,4 +34,5 @@ relkit_pypiserver_http_address: 0.0.0.0
 relkit_pypiserver_http_port: 8083
 relkit_pypiserver_autostart: True
 relkit_pypiserver_state: ignored
+relkit_pypiserver_users: []
 
