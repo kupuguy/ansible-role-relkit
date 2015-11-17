@@ -1,8 +1,14 @@
 ---
 
+- name: absent | Assess PyPI server poorman service manifest presence
+  when:  relkit_pypiserver_autostart
+  register: cmd
+  stat:
+    path: /usr/local/bin/service_pypiserver.sh
+
 - name: absent | PyPI server service is stopped
-  when: relkit_pypiserver_autostart
-  shell: which service_pypiserver.sh && service_pypiserver.sh stop status
+  when: relkit_pypiserver_autostart and cmd.stat.exists
+  shell: service_pypiserver.sh stop status
 
 - name: absent | PyPI server poorman service manifest is absent
   when: relkit_pypiserver_autostart
