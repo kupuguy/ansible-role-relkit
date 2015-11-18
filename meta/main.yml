@@ -13,10 +13,10 @@ galaxy_info:
   license: MIT
   min_ansible_version: 1.8.4
   platforms:
-  - name: Ubuntu
+  - name: Debian
     versions:
     - all
-  - name: Debian
+  - name: Ubuntu
     versions:
     - all
 version: 0.1
@@ -65,7 +65,8 @@ include_when:
   gitd_absent.yml: relkit_gitd_state == "absent"
 
 usage_complement: |
-  This role is registered on [Galaxy](https://galaxy.ansible.com/detail#/role/6062) as `fclaerho.relkit`.
+  This role is registered on [Galaxy](https://galaxy.ansible.com/detail#/role/6062)
+  with the ID `fclaerho.relkit`.
 
   By default, this role does nothing as all `*_state` variables are set to `ignored`.
   For the components you're interested in, set the `*_state` variables to `present` or `absent`.
@@ -92,3 +93,6 @@ usage_complement: |
     * Integration issues (firewalling, proxying…) are not managed by this role.
   Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
     * Passwords `pass` are expected to be securely stored via [Ansible-vault](http://docs.ansible.com/ansible/playbooks_vault.html) (or any equivalent.)
+
+maintenance_complement: >
+  On [Galaxy](https://galaxy.ansible.com/accounts/profile), re-import the repository.

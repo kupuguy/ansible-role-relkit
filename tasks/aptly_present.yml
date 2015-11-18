@@ -4,38 +4,44 @@
 # http://www.aptly.info/doc/overview/
 # http://www.unixmen.com/introducing-aptly-a-debian-repository-management-tool/
 
-- name: present | Aptly Debian repository key is present
+- debug:
+    msg: |
+      ***********************
+      * aptly state=present *
+      ***********************
+
+- name: Aptly Debian repository key is present
   apt_key:
     keyserver: keys.gnupg.net
     id: E083A3782A194991
     state: present
 
-- name: present | Aptly Debian repository is present
+- name: Aptly Debian repository is present
   apt_repository:
     repo: "deb http://repo.aptly.info/ squeeze main"
     state: present
 
-- name: present | Aptly Debian package is present
+- name: Aptly Debian package is present
   apt:
     name: aptly
     state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
     cache_valid_time: 3600
 
-- name: present | Aptly user is present
+- name: Aptly user is present
   user:
     name: aptly
     state: present
     system: yes
 
-- name: present | Aptly is configured
+- name: Aptly is configured
   copy:
     src: aptly.conf
     dest: /etc
     mode: "644"
     owner: root
 
-- name: present | Aptly cache location is present
+- name: Aptly cache location is present
   file:
     path: /var/cache/aptly
     mode: "700"
@@ -43,18 +49,22 @@
     group: aptly
     state: directory
 
-- name: present | Aptly repositories are assessed
+########
+# data #
+########
+
+- name: Aptly repositories are assessed
   sudo: yes
   sudo_user: aptly
   command: aptly repo list
   register: cmd
   changed_when: no
 
-- name: present | Aptly repositories are traced
+- name: Aptly repositories are traced
   debug:
     var: cmd.stdout_lines
 
-- name: present | Testing repository is present
+- name: Testing repository is present
   with_items: aptly_repositories
   when: "'[{{ item.name }}]' not in cmd.stdout"
   sudo: yes
@@ -62,23 +72,27 @@
   command: "aptly repo create {{ item.name }}"
 
 
-- name: present | Aptly published repositories are assessed
+- name: Aptly published repositories are assessed
   command: aptly publish list
   register: cmd
   changed_when: no
 
-- name: present | Aptly published repositories are traced
+- name: Aptly published repositories are traced
   debug:
     var: cmd.stdout_lines
 
-- name: present | Testing repository is published
+- name: Testing repository is published
   with_items: relkit_aptly_repositories
   when: "'./{{ item.distribution }}' not in cmd.stdout"
   sudo: yes
   sudo_user: aptly
   command: "aptly publish repo -distribution={{ item.distribution }} -architectures=all,source,x86,amd64 -skip-signing=true {{ item.name }}"
 
-- name: present | Aptly poorman service manifest is present
+###########
+# service #
+###########
+
+- name: Aptly poorman service manifest is present
   when: relkit_aptly_autostart
   template:
     src: service_aptly.sh.j2
@@ -87,7 +101,7 @@
     group: staff
     mode: "755"
 
-- name: present | Aptly service is started
+- name: Aptly service is started
   when: relkit_aptly_autostart
-  command: service_aptly.sh start status
+  command: service_aptly.sh start
 

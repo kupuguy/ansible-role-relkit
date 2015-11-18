@@ -1,8 +1,14 @@
 ---
 
+- debug:
+    msg: |
+      *********************
+      * gitd state=absent *
+      *********************
+
 - name: present | Gitd service is stopped
   when: relkit_gitd_autostart
-  command: /tmp/gitd.sh stop status
+  command: /tmp/gitd.sh stop
 
 - name: absent | Gitd poorman service manifest is absent
   when: relkit_gitd_autostart

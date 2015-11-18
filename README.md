@@ -7,8 +7,8 @@ All things Build & Release. This role manages the provisioning of various B&R to
 
 ## Supported Platforms
 
-  * Ubuntu
   * Debian
+  * Ubuntu
 
 ## Variables
 
@@ -51,7 +51,8 @@ register its ID in the `dependencies` list of the role manifest `meta/main.yml`.
 For further details,
 please refer to the Ansible documentation at https://docs.ansible.com/playbooks_roles.html.
 
-This role is registered on [Galaxy](https://galaxy.ansible.com/detail#/role/6062) as `fclaerho.relkit`.
+This role is registered on [Galaxy](https://galaxy.ansible.com/detail#/role/6062)
+with the ID `fclaerho.relkit`.
 
 By default, this role does nothing as all `*_state` variables are set to `ignored`.
 For the components you're interested in, set the `*_state` variables to `present` or `absent`.
@@ -91,4 +92,4 @@ The following files are generated or updated based on various role assets:
   * `tasks/main.yml`
   * `README.md`
 
-
+On [Galaxy](https://galaxy.ansible.com/accounts/profile), re-import the repository.

@@ -1,13 +1,19 @@
 ---
 
-- name: present | Pip Debian package is present
+- debug:
+    msg: |
+      ****************************
+      * pypiserver state=present *
+      ****************************
+
+- name: Pip Debian package is present
   apt:
     name: python-pip
     state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
     cache_valid_time: 3600
 
-- name: present | Support Python packages are present
+- name: Support Python packages are present
   with_items:
   - pypiserver
   - passlib
@@ -16,13 +22,13 @@
     state: present
     extra_args: "{{ '--upgrade' if relkit_update else '' }}"
 
-- name: present | PyPI server user is present
+- name: PyPI server user is present
   user:
     name: pypiserver
     state: present
     system: yes
 
-- name: present | PyPI server cache directory is present
+- name: PyPI server cache directory is present
   file:
     name: /var/cache/pypiserver
     state: directory
@@ -30,7 +36,7 @@
     group: pypiserver
     mode: "700"
 
-- name: present | PyPI server configuration directory is present
+- name: PyPI server configuration directory is present
   file:
     name: /etc/pypiserver
     state: directory
@@ -38,7 +44,7 @@
     group: pypiserver
     mode: "700"
 
-- name: present | PyPI server htaccess is present
+- name: PyPI server htaccess is present
   copy:
     content: ""
     dest: /etc/pypiserver/htaccess
@@ -46,7 +52,7 @@
     group: pypiserver
     mode: "600"
 
-- name: present | PyPI server accounts are present/absent
+- name: PyPI server accounts are present/absent
   with_items: relkit_pypiserver_users
   htpasswd:
     path: /etc/pypiserver/htaccess
@@ -57,7 +63,7 @@
   notify:
   - relkit_restart_pypiserver
 
-- name: present | PyPI server poorman service manifest is present
+- name: PyPI server poorman service manifest is present
   when: relkit_pypiserver_autostart
   template:
     src: service_pypiserver.sh.j2
@@ -66,10 +72,6 @@
     group: staff
     mode: "755"
 
-- name: present | PyPI server service is started
+- name: PyPI server service is started
   when: relkit_pypiserver_autostart
-  register: cmd
-  command: service_pypiserver.sh start status
-
-- debug:
-    msg: cmd.stdout
+  command: service_pypiserver.sh start

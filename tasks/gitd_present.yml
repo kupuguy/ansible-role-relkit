@@ -1,19 +1,25 @@
 ---
 
-- name: present | Git Debian package is present
+- debug:
+    msg: |
+      **********************
+      * gitd state=present *
+      **********************
+
+- name: Git Debian package is present
   apt:
     name: git
     state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
     cache_valid_time: 3600
 
-- name: present | Git user is present
+- name: Git user is present
   user:
     name: git
     shell: /usr/bin/git-shell
     system: no
 
-- name: present | Git bare repositories are present
+- name: Git bare repositories are present
   with_items: relkit_gitd_repositories
   when: item.state == "present"
   file:
@@ -22,18 +28,18 @@
     owner: git
     state: directory
 
-- name: present | Git bare repositories are absent
+- name: Git bare repositories are absent
   with_items: relkit_gitd_repositories
   when: item.state == "absent"
   command: "rm -rf /home/git/{{ item.name }}.git"
 
-- name: present | Git bare repositories are initialized
+- name: Git bare repositories are initialized
   with_items: relkit_gitd_repositories
   when: item.state == "present"
   shell: "git init --bare chdir=/home/git/{{ item.name }}.git"
   sudo: git
 
-- name: present | Gitd poorman service manifest is present
+- name: Gitd poorman service manifest is present
   when: relkit_gitd_autostart
   file:
     src: service_gitd.sh
@@ -42,6 +48,6 @@
     group: staff
     mode: "755"
 
-- name: present | Gitd service is started
+- name: Gitd service is started
   when: relkit_gitd_autostart
-  command: service_gitd.sh start status
+  command: service_gitd.sh start

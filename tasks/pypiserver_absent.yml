@@ -1,50 +1,56 @@
 ---
 
-- name: absent | Assess PyPI server poorman service manifest presence
+- debug:
+    msg: |
+      ***************************
+      * pypiserver state=absent *
+      ***************************
+
+- name: Assess PyPI server poorman service manifest presence
   when:  relkit_pypiserver_autostart
   register: cmd
   stat:
     path: /usr/local/bin/service_pypiserver.sh
 
-- name: absent | PyPI server service is stopped
+- name: PyPI server service is stopped
   when: relkit_pypiserver_autostart and cmd.stat.exists
-  shell: service_pypiserver.sh stop status
+  shell: service_pypiserver.sh stop
 
-- name: absent | PyPI server poorman service manifest is absent
+- name: PyPI server poorman service manifest is absent
   when: relkit_pypiserver_autostart
   file:
     dest: /usr/local/bin/service_pypiserver.sh
     state: absent
 
-- name: absent | Assess PyPI configuration directory stat
+- name: Assess PyPI configuration directory stat
   register: cmd
   stat:
     path: /etc/pypiserver
 
-- name: absent | PyPI server configuration directory is absent
+- name: PyPI server configuration directory is absent
   when: cmd.stat.exists
   command: rm -rf /etc/pypiserver
 
-- name: absent | Assess PyPI cache directory stat
+- name: Assess PyPI cache directory stat
   register: cmd
   stat:
     path: /var/cache/pypiserver
 
-- name: absent | PyPI server cache directory is absent
+- name: PyPI server cache directory is absent
   when: cmd.stat.exists
   command: rm -rf /var/cache/pypiserver
 
-- name: absent | PyPI server user is absent
+- name: PyPI server user is absent
   user:
     name: pypiserver
     state: absent
 
-- name: absent | Assess pip presence
+- name: Assess pip presence
   register: cmd
   command: which pip
   ignore_errors: yes
 
-- name: absent | Support Python packages are absent
+- name: Support Python packages are absent
   with_items:
   - pypiserver
   - passlib
@@ -53,7 +59,7 @@
     name: "{{ item }}"
     state: absent
 
-- name: absent | Pip Debian package is absent
+- name: Pip Debian package is absent
   apt:
     name: python-pip
     state: absent
