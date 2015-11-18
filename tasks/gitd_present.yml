@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      **********************
-      * gitd state=present *
-      **********************
+    msg: ———————————— gitd state=present ————————————
 
 - name: Git Debian package is present
   apt:

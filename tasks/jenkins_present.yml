@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      *************************
-      * jenkins state=present *
-      *************************
+    msg: ———————————— jenkins state=present ————————————
 
 - name: JRE7 Debian package is present
   apt:

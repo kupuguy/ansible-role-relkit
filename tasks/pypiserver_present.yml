@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      ****************************
-      * pypiserver state=present *
-      ****************************
+    msg: ———————————— pypiserver state=present ————————————
 
 - name: Pip Debian package is present
   apt:

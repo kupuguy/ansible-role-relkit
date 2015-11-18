@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      *********************
-      * gitd state=absent *
-      *********************
+    msg: ———————————— gitd state=absent ————————————
 
 - name: Gitd service is stopped
   when: relkit_gitd_autostart

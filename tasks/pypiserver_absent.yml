@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      ***************************
-      * pypiserver state=absent *
-      ***************************
+    msg: ———————————— pypiserver state=absent ————————————
 
 - name: Assess PyPI server poorman service manifest presence
   when:  relkit_pypiserver_autostart

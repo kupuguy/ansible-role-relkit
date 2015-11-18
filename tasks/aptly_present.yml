@@ -5,10 +5,7 @@
 # http://www.unixmen.com/introducing-aptly-a-debian-repository-management-tool/
 
 - debug:
-    msg: |
-      ***********************
-      * aptly state=present *
-      ***********************
+    msg: ———————————— aptly state=present ————————————
 
 - name: Aptly Debian repository key is present
   apt_key:

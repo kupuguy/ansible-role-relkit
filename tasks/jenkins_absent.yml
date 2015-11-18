@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      ************************
-      * jenkins state=absent *
-      ************************
+    msg: ———————————— jenkins state=absent ————————————
 
 - name: Jenkins service is stopped
   service:

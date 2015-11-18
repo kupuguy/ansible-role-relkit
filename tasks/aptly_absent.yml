@@ -1,10 +1,7 @@
 ---
 
 - debug:
-    msg: |
-      **********************
-      * aptly state=absent *
-      **********************
+    msg: ———————————— aptly state=absent ————————————
 
 - name: Aptly service is stopped
   when: relkit_aptly_autostart
