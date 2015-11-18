@@ -51,8 +51,7 @@ register its ID in the `dependencies` list of the role manifest `meta/main.yml`.
 For further details,
 please refer to the Ansible documentation at https://docs.ansible.com/playbooks_roles.html.
 
-This role is registered on [Galaxy](https://galaxy.ansible.com/detail#/role/6062)
-with the ID `fclaerho.relkit`.
+This role is registered on Galaxy with the ID `fclaerho.relkit`.
 
 By default, this role does nothing as all `*_state` variables are set to `ignored`.
 For the components you're interested in, set the `*_state` variables to `present` or `absent`.
@@ -77,7 +76,8 @@ The following components are available:
 **NOTICE:**
 
   * Integration issues (firewalling, proxying…) are not managed by this role.
-Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
+    Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit)
+    as an option for this.
   * Passwords `pass` are expected to be securely stored via [Ansible-vault](http://docs.ansible.com/ansible/playbooks_vault.html) (or any equivalent.)
 
 
