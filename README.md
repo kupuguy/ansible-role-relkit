@@ -55,6 +55,7 @@ By default, this role does nothing as all `*_state` variables are set to `ignore
 For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 
 The following components are available:
+
   * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
     Variables: `relkit_pypiserver_*`.
     As the package doesn't not provide a service manifest,
@@ -71,6 +72,7 @@ The following components are available:
     relkit ships the script `service_gitd.sh` to manage the service manually.
 
 **NOTICE:**
+
   * Integration issues (firewalling, proxying…) are not managed by this role.
 Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit) as an option for this.
   * Passwords `pass` are expected to be securely stored via [Ansible-vault](http://docs.ansible.com/ansible/playbooks_vault.html) (or any equivalent.)
