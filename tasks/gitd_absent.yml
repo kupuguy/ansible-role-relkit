@@ -6,24 +6,25 @@
       * gitd state=absent *
       *********************
 
-- name: present | Gitd service is stopped
+- name: Gitd service is stopped
   when: relkit_gitd_autostart
   command: /tmp/gitd.sh stop
 
-- name: absent | Gitd poorman service manifest is absent
+- name: Gitd poorman service manifest is absent
   when: relkit_gitd_autostart
   file:
     path: /tmp/gitd.sh
     state: absent
 
 # remove the entire home directory including the repositories
-- name: absent | Git user is absent
+- name: Git user is absent
   user:
     name: git
     state: absent
     remove: yes
 
-- name: absent | Git Debian package is absent
+- name: Git Debian package is absent
   apt:
     name: git
     state: absent
+    purge: yes

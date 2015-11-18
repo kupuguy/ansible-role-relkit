@@ -44,6 +44,7 @@
     group: pypiserver
     mode: "700"
 
+# create an empty file if it does not exist
 - name: PyPI server htaccess is present
   copy:
     content: ""

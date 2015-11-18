@@ -33,6 +33,7 @@
   apt:
     name: aptly
     state: absent
+    purge: yes
 
 - name: Aptly Debian repository is absent
   apt_repository:
