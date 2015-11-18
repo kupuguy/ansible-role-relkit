@@ -51,6 +51,8 @@ register its ID in the `dependencies` list of the role manifest `meta/main.yml`.
 For further details,
 please refer to the Ansible documentation at https://docs.ansible.com/playbooks_roles.html.
 
+This role is registered on [Galaxy](https://galaxy.ansible.com/detail#/role/6062) as `fclaerho.relkit`.
+
 By default, this role does nothing as all `*_state` variables are set to `ignored`.
 For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 
