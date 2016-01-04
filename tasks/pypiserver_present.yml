@@ -9,6 +9,14 @@
     state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
     cache_valid_time: 3600
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Pip YUM package is present
+  yum:
+    name: python-pip
+    state: "{{ 'latest' if relkit_update else 'present' }}"
+    update_cache: yes
+  when: ansible_pkg_mgr == 'yum'
 
 - name: Support Python packages are present
   with_items:
@@ -49,6 +57,7 @@
     owner: pypiserver
     group: pypiserver
     mode: "600"
+    force: no
 
 - name: PyPI server accounts are present/absent
   with_items: relkit_pypiserver_users
@@ -62,7 +71,7 @@
   - relkit_restart_pypiserver
 
 - name: PyPI server poorman service manifest is present
-  when: relkit_pypiserver_autostart
+  when: relkit_pypiserver_autostart and not relkit_pypiserver_use_systemd
   template:
     src: service_pypiserver.sh.j2
     dest: /usr/local/bin/service_pypiserver.sh
@@ -71,5 +80,17 @@
     mode: "755"
 
 - name: PyPI server service is started
-  when: relkit_pypiserver_autostart
+  when: relkit_pypiserver_autostart and not relkit_pypiserver_use_systemd
   command: service_pypiserver.sh start
+
+- name: PyPI server systemd service manifest is present
+  when: relkit_pypiserver_use_systemd
+  template:
+    src: pypiserver.service.j2
+    dest: /usr/lib/systemd/system/pypiserver.service
+    owner: root
+    group: root
+    mode: "755"
+  notify:
+    - relkit_reload_systemd
+    - relkit_restart_pypiserver

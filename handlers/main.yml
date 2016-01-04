@@ -1,5 +1,4 @@
 ---
-
 # jenkins
 
 - name: relkit_restart_jenkins
@@ -21,8 +20,15 @@
 
 # pypiserver
 
-- include: pypiserver_custom.yml
+- include: handlers/pypiserver_custom.yml
   when: relkit_pypiserver_autostart
 
-- include: pypiserver_system.yml
+- include: handlers/pypiserver_system.yml
   when: not relkit_pypiserver_autostart
+
+- name: relkit_reload_systemd
+  become: yes
+  command: systemctl daemon-reload
+
+- name: relkit_restart_pypiserver
+  service: name=pypiserver state=restarted

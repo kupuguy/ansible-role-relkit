@@ -35,4 +35,5 @@ relkit_pypiserver_http_port: 8083
 relkit_pypiserver_autostart: True
 relkit_pypiserver_state: ignored
 relkit_pypiserver_users: []
-
+relkit_pypiserver_use_systemd: False
+relkit_pypiserver_script_name: ""

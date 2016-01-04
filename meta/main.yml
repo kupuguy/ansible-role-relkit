@@ -19,80 +19,84 @@ galaxy_info:
   - name: Ubuntu
     versions:
     - all
-version: 0.1
-prefix: relkit_
+  - name: Fedora
+    versions:
+    - all
 
-variables:
-# common
-  relkit_environment: "Common environment variables, such as http_proxy"
-  relkit_update: "Update packages when possible"
-# jenkins
-  relkit_jenkins_http_address: "HTTP service address to bind"
-  relkit_jenkins_http_port: "HTTP service port to bind"
-  relkit_jenkins_autostart: "Boolean. If set, manage the service status."
-  relkit_jenkins_memory: "How much memory the JVM can use"
-  relkit_jenkins_stable: "Boolean. If set, use Long Term Support (LTS) release (recommended.)"
-  relkit_jenkins_state: "present, absent or ignored"
-# aptly
-  relkit_aptly_repositories: "List of dict {'name', 'distribution'}"
-  relkit_aptly_api_address: "API service address to bind"
-  relkit_aptly_dl_address: "Download service address to bind"
-  relkit_aptly_autostart: "Boolean. If set, install the support script and manage the service status."
-  relkit_aptly_api_port: "API service port to bind"
-  relkit_aptly_dl_port: "Download service port to bind"
-  relkit_aptly_state: "present, absent or ignored"
-# gitd
-  relkit_gitd_repositories: "Create/delete bare repositories. List of dict {'name', 'state': present/absent}"
-  relkit_gitd_autostart: "Boolean. If set, install the support script and manage the service status."
-  relkit_gitd_state: "present, absent or ignored"
-# pypiserver
-  relkit_pypiserver_disable_fallback: "Boolean. If not set, packages are fetched from PyPI on fallback."
-  relkit_pypiserver_allow_overwrite: "Boolean. If set, the same version of a package can be re-uploaded."
-  relkit_pypiserver_http_address: "HTTP service address to bind"
-  relkit_pypiserver_http_port: "HTTP service port to bind"
-  relkit_pypiserver_autostart: "Boolean. If set, install the support script and manage the service status."
-  relkit_pypiserver_state: "present, absent or ignored"
-  relkit_pypiserver_users: "List of dict {'name', 'pass', 'state': present/absent}"
+# version: 0.1
+# prefix: relkit_
 
-include_when:
-  pypiserver_present.yml: relkit_pypiserver_state == "present"
-  pypiserver_absent.yml: relkit_pypiserver_state == "absent"
-  jenkins_present.yml: relkit_jenkins_state == "present"
-  jenkins_absent.yml: relkit_jenkins_state == "absent"
-  aptly_present.yml: relkit_aptly_state == "present"
-  aptly_absent.yml: relkit_aptly_state == "absent"
-  gitd_present.yml: relkit_gitd_state == "present"
-  gitd_absent.yml: relkit_gitd_state == "absent"
+# variables:
+# # common
+#   relkit_environment: "Common environment variables, such as http_proxy"
+#   relkit_update: "Update packages when possible"
+# # jenkins
+#   relkit_jenkins_http_address: "HTTP service address to bind"
+#   relkit_jenkins_http_port: "HTTP service port to bind"
+#   relkit_jenkins_autostart: "Boolean. If set, manage the service status."
+#   relkit_jenkins_memory: "How much memory the JVM can use"
+#   relkit_jenkins_stable: "Boolean. If set, use Long Term Support (LTS) release (recommended.)"
+#   relkit_jenkins_state: "present, absent or ignored"
+# # aptly
+#   relkit_aptly_repositories: "List of dict {'name', 'distribution'}"
+#   relkit_aptly_api_address: "API service address to bind"
+#   relkit_aptly_dl_address: "Download service address to bind"
+#   relkit_aptly_autostart: "Boolean. If set, install the support script and manage the service status."
+#   relkit_aptly_api_port: "API service port to bind"
+#   relkit_aptly_dl_port: "Download service port to bind"
+#   relkit_aptly_state: "present, absent or ignored"
+# # gitd
+#   relkit_gitd_repositories: "Create/delete bare repositories. List of dict {'name', 'state': present/absent}"
+#   relkit_gitd_autostart: "Boolean. If set, install the support script and manage the service status."
+#   relkit_gitd_state: "present, absent or ignored"
+# # pypiserver
+#   relkit_pypiserver_disable_fallback: "Boolean. If not set, packages are fetched from PyPI on fallback."
+#   relkit_pypiserver_allow_overwrite: "Boolean. If set, the same version of a package can be re-uploaded."
+#   relkit_pypiserver_http_address: "HTTP service address to bind"
+#   relkit_pypiserver_http_port: "HTTP service port to bind"
+#   relkit_pypiserver_autostart: "Boolean. If set, install the support script and manage the service status."
+#   relkit_pypiserver_state: "present, absent or ignored"
+#   relkit_pypiserver_users: "List of dict {'name', 'pass', 'state': present/absent}"
 
-usage_complement: |
-  This role is registered on Galaxy with the ID `fclaerho.relkit`.
+# include_when:
+#   pypiserver_present.yml: relkit_pypiserver_state == "present"
+#   pypiserver_absent.yml: relkit_pypiserver_state == "absent"
+#   jenkins_present.yml: relkit_jenkins_state == "present"
+#   jenkins_absent.yml: relkit_jenkins_state == "absent"
+#   aptly_present.yml: relkit_aptly_state == "present"
+#   aptly_absent.yml: relkit_aptly_state == "absent"
+#   gitd_present.yml: relkit_gitd_state == "present"
+#   gitd_absent.yml: relkit_gitd_state == "absent"
 
-  By default, this role does nothing as all `*_state` variables are set to `ignored`.
-  For the components you're interested in, set the `*_state` variables to `present` or `absent`.
+# usage_complement: |
+#   This role is registered on Galaxy with the ID `fclaerho.relkit`.
 
-  The following components are available:
+#   By default, this role does nothing as all `*_state` variables are set to `ignored`.
+#   For the components you're interested in, set the `*_state` variables to `present` or `absent`.
 
-    * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
-      Variables: `relkit_pypiserver_*`.
-      As the package doesn't not provide a service manifest,
-      relkit ships the script `service_pypiserver.sh` to manage the service manually.
-    * [Jenkins](http://jenkins-ci.org), Continuous Integration Service.
-      Variables: `relkit_jenkins_*`.
-    * [Aptly](http://www.aptly.info), Debian Repository.
-      Variables: `relkit_aptly_*`.
-      As the package doesn't not provide a service manifest,
-      relkit ships the script `service_aptly.sh` to manage the service manually.
-    * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon), Code repository.
-      Variables: `relkit_gitd_*`.
-      As the package doesn't not provide a service manifest,
-      relkit ships the script `service_gitd.sh` to manage the service manually.
+#   The following components are available:
 
-  **NOTICE:**
+#     * [PyPI Server](https://pypi.python.org/pypi/pypiserver), Python Repository.
+#       Variables: `relkit_pypiserver_*`.
+#       As the package doesn't not provide a service manifest,
+#       relkit ships the script `service_pypiserver.sh` to manage the service manually.
+#     * [Jenkins](http://jenkins-ci.org), Continuous Integration Service.
+#       Variables: `relkit_jenkins_*`.
+#     * [Aptly](http://www.aptly.info), Debian Repository.
+#       Variables: `relkit_aptly_*`.
+#       As the package doesn't not provide a service manifest,
+#       relkit ships the script `service_aptly.sh` to manage the service manually.
+#     * [Gitd](https://git-scm.com/book/en/v2/Git-on-the-Server-Git-Daemon), Code repository.
+#       Variables: `relkit_gitd_*`.
+#       As the package doesn't not provide a service manifest,
+#       relkit ships the script `service_gitd.sh` to manage the service manually.
 
-    * Integration issues (firewalling, proxying…) are not managed by this role.
-      Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit)
-      as an option for this.
-    * Passwords `pass` are expected to be securely stored via [Ansible-vault](http://docs.ansible.com/ansible/playbooks_vault.html) (or any equivalent.)
+#   **NOTICE:**
 
-maintenance_complement: >
-  On [Galaxy](https://galaxy.ansible.com/accounts/profile), re-import the repository.
+#     * Integration issues (firewalling, proxying…) are not managed by this role.
+#       Check out [ansible-role-syskit](https://github.com/fclaerho/ansible-role-syskit)
+#       as an option for this.
+#     * Passwords `pass` are expected to be securely stored via [Ansible-vault](http://docs.ansible.com/ansible/playbooks_vault.html) (or any equivalent.)
+
+# maintenance_complement: >
+#   On [Galaxy](https://galaxy.ansible.com/accounts/profile), re-import the repository.

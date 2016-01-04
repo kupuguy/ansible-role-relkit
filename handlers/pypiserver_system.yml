@@ -1,6 +1,8 @@
----
+- name: relkit_reload_systemd
+  become: yes
+  command: systemctl daemon-reload
 
 - name: relkit_restart_pypiserver
   service:
     name: pypiserver
-    status: restarted
+    state: restarted

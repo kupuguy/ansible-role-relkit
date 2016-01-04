@@ -60,3 +60,10 @@
   apt:
     name: python-pip
     state: absent
+  when: ansible_pkg_mgr == 'apt'
+
+- name: Pip Fedora package is absent
+  yum:
+    name: python-pip
+    state: absent
+  when: ansible_pkg_mgr == 'yum'
