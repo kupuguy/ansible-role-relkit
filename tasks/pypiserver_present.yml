@@ -12,11 +12,11 @@
   when: ansible_pkg_mgr == 'apt'
 
 - name: Pip YUM package is present
-  yum:
+  dnf:
     name: python-pip
     state: "{{ 'latest' if relkit_update else 'present' }}"
     update_cache: yes
-  when: ansible_pkg_mgr == 'yum'
+  when: ansible_pkg_mgr == 'dnf'
 
 - name: Support Python packages are present
   with_items:
